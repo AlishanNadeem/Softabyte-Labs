@@ -24,8 +24,23 @@ export function ServicesHub() {
         eyebrow={hub.hero.eyebrow}
         h1={hub.hero.h1}
         description={hub.hero.description}
-        ambient_variant="hero-primary"
         align="left"
+        blurs={[
+          {
+            variant: "primary",
+            position: "right-center",
+            size: "xl",
+            opacity: 0.4,
+            mobile: "reduce",
+          },
+          {
+            variant: "secondary",
+            position: "bottom-left",
+            size: "sm",
+            opacity: 0.14,
+            mobile: "hide",
+          },
+        ]}
       />
       <ServiceSection theme="primary">
         <ContentIntro {...hub.intro} />
@@ -61,7 +76,18 @@ export function ServicesHub() {
           </Reveal>
         </div>
       </ServiceSection>
-      <ServiceSection theme="primary">
+      <ServiceSection
+        theme="primary"
+        blurs={[
+          {
+            variant: "primary",
+            position: "right-center",
+            size: "lg",
+            opacity: 0.26,
+            mobile: "hide",
+          },
+        ]}
+      >
         <TechnologyWeUse
           {...technology_section_copy.hub}
           technologies={hub_technologies}

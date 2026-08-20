@@ -23,18 +23,18 @@ const typography_sample = {
 };
 
 const color_swatches = [
-  { name: "Primary Black", token: "background-primary", hex: "#0A0A0A" },
-  { name: "Deep Black", token: "background-deep", hex: "#050505" },
-  { name: "Secondary Black", token: "background-secondary", hex: "#111111" },
-  { name: "Surface", token: "surface", hex: "#171717" },
-  { name: "Elevated Surface", token: "surface-elevated", hex: "#1C1C1C" },
-  { name: "Primary Text", token: "text-primary", hex: "#F5F5F5", text: true },
-  { name: "Secondary Text", token: "text-secondary", hex: "#A3A3A3", text: true },
-  { name: "Muted Text", token: "text-muted", hex: "#737373", text: true },
-  { name: "Primary Border", token: "border", hex: "#262626" },
-  { name: "Strong Border", token: "border-strong", hex: "#333333" },
-  { name: "Electric Blue", token: "brand-primary", hex: "#0077ED", brand: true },
-  { name: "Electric Blue Hover", token: "brand-primary-hover", hex: "#0066D6", brand: true },
+  { name: "Deep", token: "background-deep", hex: "#050607" },
+  { name: "Primary BG", token: "background-primary", hex: "#080A0B" },
+  { name: "Secondary BG", token: "background-secondary", hex: "#0D1012" },
+  { name: "Surface", token: "surface", hex: "#111518" },
+  { name: "Elevated Surface", token: "surface-elevated", hex: "#161B1E" },
+  { name: "Primary Text", token: "text-primary", hex: "#F5F7F7", text: true },
+  { name: "Secondary Text", token: "text-secondary", hex: "#A6ADB0", text: true },
+  { name: "Muted Text", token: "text-muted", hex: "#717A7E", text: true },
+  { name: "Border", token: "border", hex: "#242B2E" },
+  { name: "Strong Border", token: "border-strong", hex: "#343D41" },
+  { name: "Cyan", token: "brand-cyan", hex: "#0CC0DF", brand: true },
+  { name: "Yellow", token: "brand-yellow", hex: "#FFDE59", brand: true },
 ];
 
 function PreviewLabel({ children }) {
@@ -115,8 +115,8 @@ export default function DesignPreviewPage() {
                 </h1>
                 <p className="ds-body-large text-text-secondary max-w-lg">
                   Sample supporting copy for visual review. Strong Montserrat
-                  headline with readable Poppins body text on a deep black canvas
-                  with Electric Blue accents.
+                  headline with readable Poppins body text on a dark graphite canvas
+                  with cyan and yellow accents.
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">
                   <Button variant="primary">Discuss your project</Button>
@@ -143,7 +143,7 @@ export default function DesignPreviewPage() {
           <div className="ds-container">
             <SectionHeading
               title="Color palette"
-              description="Black-dominant foundation with Electric Blue as the sole brand accent. 70–80% dark neutrals, 15–20% typography, 5–10% blue."
+              description="Dark graphite foundation with cyan as the primary technology accent and yellow as a controlled finishing highlight. ~70% neutrals, ~20% cyan, ~10% yellow."
             />
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {color_swatches.map((swatch) => (
@@ -225,7 +225,7 @@ export default function DesignPreviewPage() {
           <div className="ds-container">
             <SectionHeading
               title="Buttons & text links"
-              description="Electric Blue primary actions with restrained secondary controls. No glow effects."
+              description="Gradient primary actions with restrained secondary controls. No glow effects."
             />
             <div className="flex flex-wrap items-center gap-4 mb-8">
               <Button variant="primary">Primary action</Button>
@@ -245,7 +245,7 @@ export default function DesignPreviewPage() {
           <div className="ds-container">
             <SectionHeading
               title="Selective icon usage"
-              description="Lucide outline icons — white, muted gray, and Electric Blue used sparingly."
+              description="Lucide outline icons — white, muted gray, and cyan used sparingly."
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="flex gap-3 items-start">
@@ -439,7 +439,7 @@ export default function DesignPreviewPage() {
                 </h3>
                 <p className="ds-body-small text-text-secondary mb-4">
                   Compact panel for feature highlights with subtle hover border
-                  transition toward Electric Blue.
+                  transition toward cyan.
                 </p>
                 <TextLink href="#">See approach</TextLink>
               </Panel>
@@ -507,7 +507,7 @@ export default function DesignPreviewPage() {
                   Border transition
                 </p>
                 <p className="text-xs text-text-muted">
-                  Border shifts toward Electric Blue on hover.
+                  Border shifts toward cyan on hover.
                 </p>
               </Panel>
               <div className="rounded-md border border-border bg-surface p-6 group">

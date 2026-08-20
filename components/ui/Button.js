@@ -1,8 +1,7 @@
 const variant_styles = {
-  primary:
-    "bg-brand-primary text-white border border-transparent hover:bg-brand-primary-hover active:opacity-90",
+  primary: "ds-btn--primary border border-transparent",
   secondary:
-    "bg-background-secondary text-text-primary border border-border-strong hover:border-brand-primary-border hover:bg-surface active:bg-background-secondary",
+    "ds-btn--secondary bg-background-secondary text-text-primary border border-border-strong hover:border-brand-cyan-border hover:bg-surface active:bg-background-secondary",
 };
 
 const base_styles =

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/layout/Logo";
+import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 import {
   footer_legal,
   footer_navigation,
@@ -33,10 +34,17 @@ export function Footer() {
   const current_year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border bg-background-deep">
-      <div className="h-px w-full bg-brand-primary" aria-hidden="true" />
+    <footer className="relative border-t border-border bg-background-deep overflow-hidden">
+      <div className="ds-brand-rule" aria-hidden="true" />
+      <BackgroundBlur
+        variant="primary"
+        position="top-right"
+        size="md"
+        opacity={0.12}
+        mobile="hide"
+      />
 
-      <div className="ds-container py-14 md:py-16 lg:py-20">
+      <div className="ds-container relative z-[1] py-14 md:py-16 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
           <div className="lg:col-span-4 space-y-6">
             <Logo />

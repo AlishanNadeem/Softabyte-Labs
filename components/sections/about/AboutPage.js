@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { GlobalCTA } from "@/components/sections/GlobalCTA";
-import { AmbientGlow } from "@/components/ui/AmbientGlow";
+import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 import { Reveal } from "@/components/ui/Reveal";
 import { Breadcrumbs } from "@/components/sections/services/Breadcrumbs";
 import {
@@ -45,9 +45,13 @@ export function AboutPage() {
   return (
     <>
       <section className="relative border-b border-border bg-background-deep overflow-hidden">
-        {page.hero.ambient_variant && (
-          <AmbientGlow variant={page.hero.ambient_variant} />
-        )}
+        <BackgroundBlur
+          variant="primary"
+          position="top-right"
+          size="lg"
+          opacity={0.3}
+          mobile="reduce"
+        />
         <div className="ds-container relative z-[1] py-12 md:py-16 lg:py-20">
           <Breadcrumbs
             items={[{ label: "Home", href: "/" }, { label: "About" }]}

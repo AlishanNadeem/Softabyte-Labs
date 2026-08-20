@@ -1,4 +1,4 @@
-import { AmbientGlow } from "@/components/ui/AmbientGlow";
+import { BackgroundBlurLayer } from "@/components/ui/BackgroundBlur";
 import { Breadcrumbs } from "@/components/sections/services/Breadcrumbs";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { service_icon_map } from "@/lib/service_icons";
@@ -9,10 +9,10 @@ export function ServiceHero({
   h1,
   description,
   service_slug,
-  ambient_variant,
   align = "left",
   layout = "default",
   hero_visual,
+  blurs = [],
 }) {
   const Icon = service_slug ? service_icon_map[service_slug] : null;
   const is_centered = align === "center";
@@ -20,7 +20,7 @@ export function ServiceHero({
 
   return (
     <section className="relative border-b border-border bg-background-deep overflow-hidden">
-      {ambient_variant && <AmbientGlow variant={ambient_variant} />}
+      <BackgroundBlurLayer items={blurs} />
       <div className="ds-container relative z-[1] py-12 md:py-16 lg:py-20">
         {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
         <div

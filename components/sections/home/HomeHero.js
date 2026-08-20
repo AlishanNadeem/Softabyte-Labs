@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { AmbientGlow } from "@/components/ui/AmbientGlow";
+import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 import { hero } from "@/config/homepage_content";
 
 const hero_image_width = 1448;
@@ -14,8 +14,20 @@ export function HomeHero() {
         className="pointer-events-none absolute inset-0 ds-hero-bg"
         aria-hidden="true"
       />
-      <AmbientGlow variant="hero-primary" />
-      <AmbientGlow variant="hero-secondary" />
+      <BackgroundBlur
+        variant="primary"
+        position="hero-visual"
+        size="hero"
+        opacity={0.48}
+        mobile="reduce"
+      />
+      <BackgroundBlur
+        variant="secondary"
+        position="hero-secondary"
+        size="md"
+        opacity={0.2}
+        mobile="hide"
+      />
       <div className="ds-container relative z-[1] py-12 md:py-16 lg:py-20 xl:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,54fr)_minmax(0,46fr)] gap-10 lg:gap-12 xl:gap-14 items-center">
           <div className="space-y-5 md:space-y-6 order-1">
@@ -59,7 +71,7 @@ export function HomeHero() {
             className="group ds-hero-image-frame ds-frame-accent m-0 order-2 ds-hero-entrance ds-hero-entrance--scale"
             style={{ "--hero-delay": "200ms" }}
           >
-            <div className="relative overflow-hidden rounded-md border border-border bg-surface shadow-[0_24px_48px_-24px_rgba(0,0,0,0.75)]">
+            <div className="relative overflow-hidden rounded-md ds-gradient-border shadow-[0_24px_48px_-24px_rgba(0,0,0,0.75)]">
               <Image
                 src="/images/home/hero-visual.webp"
                 alt={hero.image.alt}

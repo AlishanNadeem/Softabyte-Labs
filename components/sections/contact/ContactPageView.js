@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AmbientGlow } from "@/components/ui/AmbientGlow";
+import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 import { Reveal } from "@/components/ui/Reveal";
 import { Breadcrumbs } from "@/components/sections/services/Breadcrumbs";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -13,9 +13,13 @@ export function ContactPageView() {
   return (
     <>
       <section className="relative border-b border-border bg-background-deep overflow-hidden">
-        {page.hero.ambient_variant && (
-          <AmbientGlow variant={page.hero.ambient_variant} />
-        )}
+        <BackgroundBlur
+          variant="primary"
+          position="top-right"
+          size="md"
+          opacity={0.28}
+          mobile="reduce"
+        />
         <div className="ds-container relative z-[1] py-12 md:py-16 lg:py-20">
           <Breadcrumbs
             items={[{ label: "Home", href: "/" }, { label: "Contact" }]}
@@ -48,7 +52,25 @@ export function ContactPageView() {
         </div>
       </section>
 
-      <ServiceSection theme="primary">
+      <ServiceSection
+        theme="primary"
+        blurs={[
+          {
+            variant: "primary",
+            position: "right-center",
+            size: "xl",
+            opacity: 0.34,
+            mobile: "reduce",
+          },
+          {
+            variant: "secondary",
+            position: "bottom-left",
+            size: "sm",
+            opacity: 0.14,
+            mobile: "hide",
+          },
+        ]}
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           <div className="lg:col-span-5 space-y-8">
             <Reveal>
@@ -99,7 +121,6 @@ export function ContactPageView() {
           <div className="lg:col-span-7">
             <Reveal variant="scale_in" delay={80}>
               <div className="relative rounded-md border border-border bg-background-secondary p-5 md:p-7 overflow-hidden">
-                <AmbientGlow variant="cta" className="opacity-60" />
                 <div className="relative z-[1]">
                   <ContactForm form_config={page.form} />
                 </div>

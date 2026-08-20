@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { AmbientGlow } from "@/components/ui/AmbientGlow";
+import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 import { Reveal } from "@/components/ui/Reveal";
 import { ai_section } from "@/config/homepage_content";
 import { SectionHeader } from "@/components/sections/home/SectionHeader";
@@ -39,7 +39,20 @@ function AIWorkflowVisual() {
 export function HomeAI() {
   return (
     <section className="relative ds-section bg-background-secondary border-b border-border overflow-hidden">
-      <AmbientGlow variant="ai" />
+      <BackgroundBlur
+        variant="primary"
+        position="right-center"
+        size="xl"
+        opacity={0.46}
+        mobile="reduce"
+      />
+      <BackgroundBlur
+        variant="secondary"
+        position="bottom-right"
+        size="sm"
+        opacity={0.18}
+        mobile="hide"
+      />
       <div className="ds-container relative z-[1]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-6">

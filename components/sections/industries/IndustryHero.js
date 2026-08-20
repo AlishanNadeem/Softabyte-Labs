@@ -1,4 +1,4 @@
-import { AmbientGlow } from "@/components/ui/AmbientGlow";
+import { BackgroundBlurLayer } from "@/components/ui/BackgroundBlur";
 import { Breadcrumbs } from "@/components/sections/services/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
@@ -11,18 +11,18 @@ export function IndustryHero({
   h1,
   description,
   industry_slug,
-  ambient_variant,
   layout = "default",
   hero_visual,
   primary_action,
   secondary_action,
+  blurs = [],
 }) {
   const Icon = industry_slug ? industry_icon_map[industry_slug] : null;
   const is_split = layout === "split" && hero_visual;
 
   return (
     <section className="relative border-b border-border bg-background-deep overflow-hidden">
-      {ambient_variant && <AmbientGlow variant={ambient_variant} />}
+      <BackgroundBlurLayer items={blurs} />
       <div className="ds-container relative z-[1] py-12 md:py-16 lg:py-20">
         {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
         <div

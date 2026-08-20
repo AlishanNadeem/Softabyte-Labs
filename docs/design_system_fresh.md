@@ -1,7 +1,23 @@
-# Softabyte Labs — Design System (Phase 1)
+# Softabyte Labs — Design System
 
-**Status:** APPROVED — visual direction pending final sign-off on preview composition  
+**Status:** ACTIVE — Theme migration (Dark Graphite + Cyan/Yellow)  
 **Route:** `/design-preview/` (development review only, noindex)
+
+---
+
+## Theme migration summary
+
+| Element | Previous | Current |
+|---------|----------|---------|
+| Foundation | Pure black / charcoal | Dark graphite layered surfaces |
+| Primary accent | Electric Blue `#0077ED` | Cyan `#0CC0DF` |
+| Secondary accent | *(none)* | Yellow `#FFDE59` (finishing highlight only) |
+| Primary CTA | Flat `#0077ED` | Cyan → yellow brand gradient |
+| Focus ring | Electric Blue | Cyan only (not gradient) |
+
+**Deprecated from active brand styling:** `#0077ED`, `#0066D6`, and Electric Blue rgba values.
+
+`--brand-primary` remains as an **alias** of `--brand-cyan` so existing Tailwind `brand-primary` classes map to cyan without scattering raw hex.
 
 ---
 
@@ -9,8 +25,10 @@
 
 | Element | Value | Status |
 |---------|-------|--------|
-| Theme | Black / Dark | APPROVED |
-| Primary accent | Electric Blue `#0077ED` | APPROVED |
+| Theme | Dark graphite / near black | ACTIVE |
+| Primary accent | Cyan `#0CC0DF` | ACTIVE |
+| Secondary accent | Yellow `#FFDE59` | ACTIVE |
+| Primary gradient | Cyan → muted teal → yellow | ACTIVE |
 | Heading font | Montserrat | APPROVED |
 | Body / UI font | Poppins | APPROVED |
 
@@ -18,92 +36,136 @@
 
 ## Design direction
 
-Premium black technology theme with Electric Blue accent, clean white typography, and subtle charcoal surfaces.
+Premium dark technology theme with cyan as the main technology accent and yellow as a controlled finishing highlight. Gradients are strategic, not decorative wallpaper.
 
 **Character:**
-- Black dominant background
-- Dark charcoal panels
-- Electric Blue highlights
-- Strong white headings
+- Dark graphite layered backgrounds
+- Cyan structural lighting and interactive accents
+- Yellow as micro-highlight / endpoint / gradient finish
+- Strong white/near-white headings
 - Muted gray supporting copy
-- Thin borders
-- Professional technology visuals
+- Thin borders and technical line details
+- Professional product-focused visuals
 - Selective line icons
-- Clean grid/layout
-- Subtle animation
-- Strong project imagery
+- Subtle motion (Phase 6.5)
 
-**Must NOT feel like:** gaming, crypto, cyberpunk, neon dashboard, hacker website.
+**Must NOT feel like:** gaming, crypto, cyberpunk, neon dashboard, rainbow, cartoonish, overly colorful.
 
-**Must NOT use:** lime, neon green, chartreuse, acid green, or any second bright accent.
+**Must NOT use:** Electric Blue (`#0077ED`), lime/acid greens, full-section rainbow fills, or animated large background gradients.
 
 ---
 
 ## Color hierarchy
 
-Visual balance target:
-- **70–80%** black / dark neutrals
-- **15–20%** white / gray typography
-- **5–10%** Electric Blue accent
+Visual balance target (~70 / 20 / 10):
+- **~70%** dark neutrals / graphite surfaces
+- **~20%** cyan (eyebrows, active nav, icons on hover, focus, structural light)
+- **~10%** yellow (gradient finish, final timeline nodes, tiny markers)
 
-Electric Blue guides attention — it does not dominate every component.
+Cyan guides attention. Yellow finishes and differentiates — it must not dominate.
 
 ---
 
 ## Color tokens
 
+### Dark foundation
+
 | Role | CSS variable | Hex / value |
 |------|--------------|-------------|
-| Primary black | `--background-primary` | `#0A0A0A` |
-| Deep black | `--background-deep` | `#050505` |
-| Secondary black | `--background-secondary` | `#111111` |
-| Surface | `--surface` | `#171717` |
-| Elevated surface | `--surface-elevated` | `#1C1C1C` |
-| Primary text | `--text-primary` | `#F5F5F5` |
-| Secondary text | `--text-secondary` | `#A3A3A3` |
-| Muted text | `--text-muted` | `#737373` |
-| Primary border | `--border` | `#262626` |
-| Strong border | `--border-strong` | `#333333` |
-| Electric Blue | `--brand-primary` | `#0077ED` |
-| Electric Blue hover | `--brand-primary-hover` | `#0066D6` |
-| Electric Blue soft | `--brand-primary-soft` | `rgba(0, 119, 237, 0.10)` |
-| Electric Blue border | `--brand-primary-border` | `rgba(0, 119, 237, 0.35)` |
+| Deep | `--background-deep` | `#050607` |
+| Primary | `--background-primary` | `#080A0B` |
+| Secondary | `--background-secondary` | `#0D1012` |
+| Surface | `--surface` | `#111518` |
+| Elevated surface | `--surface-elevated` | `#161B1E` |
+| Soft surface | `--surface-soft` | `#0D1214` |
+| Primary text | `--text-primary` | `#F5F7F7` |
+| Secondary text | `--text-secondary` | `#A6ADB0` |
+| Muted text | `--text-muted` | `#717A7E` |
+| Border | `--border` | `#242B2E` |
+| Strong border | `--border-strong` | `#343D41` |
+
+### Brand
+
+| Role | CSS variable | Hex / value |
+|------|--------------|-------------|
+| Cyan | `--brand-cyan` | `#0CC0DF` |
+| Cyan hover | `--brand-cyan-hover` | `#0AADC9` |
+| Cyan soft | `--brand-cyan-soft` | `rgba(12, 192, 223, 0.10)` |
+| Cyan border | `--brand-cyan-border` | `rgba(12, 192, 223, 0.35)` |
+| Yellow | `--brand-yellow` | `#FFDE59` |
+| Yellow soft | `--brand-yellow-soft` | `rgba(255, 222, 89, 0.08)` |
+| On-gradient text | `--brand-on-gradient` | `#071012` |
+| Primary alias | `--brand-primary` | `var(--brand-cyan)` *(compat)* |
+
+### Gradients
+
+| Token | Value |
+|-------|-------|
+| `--brand-gradient` | `linear-gradient(120deg, #0CC0DF 0%, #2BC7D3 35%, #65D1B6 67%, #FFDE59 100%)` |
+| `--brand-gradient-simple` | `linear-gradient(135deg, #0CC0DF 0%, #FFDE59 100%)` |
+| `--brand-gradient-soft` | Soft translucent cyan→yellow wash for lighting only |
+
+### Semantic (independent of brand)
+
+| Role | CSS variable | Notes |
+|------|--------------|-------|
+| Error | `--color-error` | Keep semantic red — never brand yellow |
+| Success | `--color-success` | Keep accessible green |
 
 ### Section rhythm
 
-Alternate deep black, primary black, secondary black, and surface tones:
+Alternate layered graphite tones so the site is not one endless black rectangle:
 
 | Section type | Suggested background |
 |--------------|---------------------|
-| Hero | `#050505` |
-| Standard | `#0A0A0A` |
-| Features / services | `#111111` or `#171717` |
-| Project | `#050505` |
-| CTA | `#111111` |
+| Hero | `#050607` → `#081012` (directional) |
+| Standard | `#080A0B` |
+| Features / services | `#0D1012` or `#111518` |
+| Visual feature | Subtle dark directional gradient |
+| CTA | `#0D1012` + cyan/yellow ambient light |
+| Footer | `#050607` + thin gradient rule |
 
 ---
 
-## Electric Blue usage
+## Gradient usage rules
 
-Use strategically for:
-- Primary buttons
-- Important links
-- Active navigation
-- Section labels / eyebrows
-- Selected icons
-- Arrows
-- Focus states
-- Small borders and dividers
-- Decorative lines
-- Image frame accents
-- Selected tags
-- Hover states
+**Use gradients strategically on:**
+1. Primary CTA buttons
+2. Sparse hero text emphasis (`.ds-text-gradient` — one short phrase max)
+3. Important visual borders (`.ds-gradient-border`)
+4. Timeline / workflow accents
+5. Technology-section micro details (thin rules)
+6. Selected icons / finishing markers
+7. Final CTA separator lighting
+8. Thin decorative lines (`.ds-accent-line`, `.ds-brand-rule`)
 
-Do NOT:
-- Add blue glow or neon shadows
-- Use blue gradients everywhere
-- Put blue borders on every card
-- Create full blue sections (except one strong CTA block later if needed)
+**Do NOT** put gradients on every card, heading, icon, border, button, or background.
+
+Large background gradients must remain **static** — no continuous `background-position` / rotation animation.
+
+---
+
+## Cyan usage
+
+Good for: eyebrows, active nav, hover accents, focus rings, icons on hover, system/data paths in diagrams, structural lighting.
+
+Body copy stays neutral. Do not cyan-wash paragraphs.
+
+---
+
+## Yellow usage
+
+Good for: gradient finish, final timeline nodes, decision/output markers, tiny labels, small finishing accents.
+
+**Do NOT** use `#FFDE59` for normal paragraphs or long text runs.
+
+---
+
+## Electric Blue usage (DEPRECATED)
+
+`#0077ED` / `#0066D6` are **removed from active brand styling**.
+
+Historical references in older docs may mention Electric Blue; treat them as superseded by this document.
 
 ---
 
@@ -144,33 +206,33 @@ Loaded via `next/font/google`. Semantic stacks: `--font-family-heading`, `--font
 
 ## Button system
 
-### Primary
-- Background: `#0077ED`
-- Text: white
-- Hover: `#0066D6`
-- No glow
+### Primary (`.ds-btn--primary`)
+- Background: `--brand-gradient` (cyan dominant → yellow finish)
+- Text: `--brand-on-gradient` (`#071012`) for contrast on yellow end
+- Hover: subtle gradient position shift + `translateY(-1px)` + slight brightness (~200ms)
+- No pulse, heavy glow, or dramatic scale
 
-### Secondary
-- Background: transparent or `#111111`
-- Border: `#333333`
-- Text: `#F5F5F5`
-- Hover: border toward Electric Blue
+### Secondary (`.ds-btn--secondary`)
+- Dark transparent / graphite background
+- Neutral strong border
+- Hover: border toward cyan; text brightens
+- **Never** gradient-filled
 
 ### Text link
-- Default: white, hover Electric Blue
-- Accent variant: Electric Blue
+- Default: white / secondary text
+- Hover: cyan
+- Optional tiny yellow finishing accent on important arrows only
 
 ---
 
 ## Panel / card system
 
-- Background: `#111111` or `#171717`
-- Border: `1px solid #262626`
+- Background: graphite surfaces (`--surface` / `--background-secondary`)
+- Border: `1px solid var(--border)`
 - Radius: controlled (6px)
-- Shadow: minimal or none
-- Hover: border transition, small translateY, optional blue detail
-
-Used selectively — not as the default for every section.
+- Hover: border may shift toward cyan soft border
+- Selected/important panels only: `.ds-gradient-border`
+- Do **not** fill cards with cyan/yellow gradients
 
 ---
 
@@ -183,13 +245,15 @@ Used selectively — not as the default for every section.
 | Production logo | `/public/logo.png` | 1774 × 290 | wide | Header and footer brand mark |
 | Hero visual | `/public/images/home/hero-visual.webp` | 1448 × 1086 | ~4:3 | Homepage hero — product UI visual |
 
-Project screenshots and case-study imagery are **not** required until real work is published. Do not use placeholder project images on the production homepage.
+**Logo note:** Current `logo.png` still uses Electric Blue accents. It remains usable on dark graphite, but a revised cyan/yellow brand mark is **recommended** (do not auto-recolor the raster).
+
+Project screenshots and case-study imagery are **not** required until real work is published.
 
 ### Style
 - High quality, professional, product-focused
-- Dark frame, subtle border, blue micro-detail allowed
-- Image scale on hover permitted
-- Work remains the focus — no excessive overlay graphics
+- Dark frame; important frames may use gradient border
+- Placeholders: dark surface + cyan corner mark / subtle yellow finish — not gradient-heavy fills
+- Images may remain neutral/dark; backgrounds must not require cyan/yellow in every photo
 
 ---
 
@@ -198,57 +262,88 @@ Project screenshots and case-study imagery are **not** required until real work 
 **Library:** `lucide-react`
 
 - Outline style, stroke 1.75
-- Colors: white, muted gray, Electric Blue selectively
-- No blue circles around every icon
-- No icons beside every heading
+- Default: muted gray / white
+- Important / hover: cyan
+- Selected highlight: optional cyan→yellow where practical; tiny yellow detail for active states
+- Do not make every icon yellow
+- Services/industries share one brand system (no arbitrary per-item colors)
+
+---
+
+## Timeline / workflow treatment
+
+- Nodes: cyan
+- Final / selected node: yellow
+- Connectors: neutral dark lines
+- Optional short active segment: cyan→yellow gradient
+- AI sections: strongest cyan; yellow for human review / decision / output
+- Infrastructure: restrained cyan nodes; yellow only for status/deployment accents
+
+---
+
+## Background / ambient treatment
+
+Formula:
+Dark graphite base + subtle surface variation + cyan structural lighting + very faint yellow secondary light + technical grid/line details on selected heroes.
+
+- Hero: structured radial lights + faint grid (grid reduced/removed on mobile)
+- Ambient glows: purposeful, static, fewer, lower opacity on mobile
+- No random Electric Blue blobs
+- No left-cyan / right-yellow split compositions
+
+Utility classes: `.ds-hero-bg`, `.ds-bg-blur`, `.ds-brand-rule`, `.ds-cta-section`
 
 ---
 
 ## Animation rules
 
-CSS only. No GSAP, Lenis, Framer Motion, Lottie, scroll hijacking.
+Preserve Phase 6.5 motion architecture. CSS only. No GSAP, Lenis, Framer Motion, Lottie, scroll hijacking.
 
 | Pattern | Movement | Duration |
 |---------|----------|----------|
 | Fade + translate | 4–16px | 180–600ms |
-| Hover lift | 2–4px | ~250ms |
-| Arrow shift | 4px | ~200ms |
+| Hover lift | 1–2px | ~200–250ms |
+| Arrow shift | 2–4px | ~200ms |
+| Primary button gradient shift | background-position | ~180–240ms |
 | Image reveal/zoom | subtle | ~300–400ms |
 | Border transition | color | ~250ms |
 | Line expansion | width | ~300ms |
 
 Always respect `prefers-reduced-motion`.
 
+Do **not** animate large background gradients continuously.
+
 ---
 
-## Responsive rules
+## Responsive / mobile
 
 Mobile-first. Verified at: 320, 375, 390, 414, 768, 1024, 1280, 1440, 1920.
 
-- Hero headings wrap gracefully
-- CTAs stack on mobile
+- Reduce decorative cyan/yellow lighting on small screens
+- Hero grid pattern omitted under 768px
+- CTAs stack; 44px minimum touch targets
 - No horizontal overflow
-- 44px minimum touch targets
 
 ---
 
 ## Accessibility
 
-- Strong text contrast on dark backgrounds
-- Visible focus states (Electric Blue outline)
-- Semantic headings
-- Keyboard-friendly controls
-- Meaningful image placeholder labels
-- Reduced-motion support
+- Strong text contrast on graphite backgrounds
+- Focus outlines: **cyan only** (functional, not decorative gradient)
+- Gradient buttons use dark on-gradient text (`#071012`)
+- Yellow never used for long body text
+- Semantic error/success colors preserved
+- Keyboard-friendly controls; reduced-motion support
 
 ---
 
 ## Performance
 
+- CSS gradients only — no raster gradient images
+- No JS for theme/gradients; no theme library; no new dependencies
 - Server Components by default
 - Fonts via `next/font/google`
-- No heavy animation libraries
-- No large image assets in preview
+- Static ambient lighting (no animated blur movement)
 
 ---
 
@@ -256,9 +351,9 @@ Mobile-first. Verified at: 320, 375, 390, 414, 768, 1024, 1280, 1440, 1920.
 
 | Path | Purpose |
 |------|---------|
-| `app/globals.css` | Design tokens, typography, animations |
+| `app/globals.css` | Design tokens, gradients, surfaces, motion, theme utilities |
 | `lib/fonts.js` | Montserrat, Poppins |
-| `components/ui/*` | Button, TextLink, Panel, ImagePlaceholder, Tag |
+| `components/ui/*` | Button, TextLink, Panel, ImagePlaceholder, Tag, Reveal |
 | `components/layout/*` | Header, Footer, Logo, DesktopNavigation, MobileNavigation |
 | `components/sections/GlobalCTA.js` | Reusable CTA section |
 | `config/navigation.js` | Centralized navigation data |
@@ -280,14 +375,16 @@ Mobile-first. Verified at: 320, 375, 390, 414, 768, 1024, 1280, 1440, 1920.
 - Sticky (`position: sticky; top: 0`) — no scroll-direction JS
 - Background: `bg-background-deep/95` with subtle `backdrop-blur-sm`
 - Height: 72px mobile / 80px desktop
-- Border: `1px solid #262626`
+- Border: `1px solid var(--border)`
 - Structure: Logo (left) · Navigation (center-right) · Primary CTA (right)
 - Server Component shell with isolated client navigation modules
+- Active / hover: cyan text; underline indicator uses simple brand gradient
 
 ### Logo
 
 - Production asset: `/public/logo.png` via `next/image` (see Phase 3.2)
 - Links to `/`
+- Asset still contains legacy Electric Blue — revision recommended
 
 ### Desktop navigation
 
@@ -300,7 +397,7 @@ Mobile-first. Verified at: 320, 375, 390, 414, 768, 1024, 1280, 1440, 1920.
 ### Services dropdown
 
 - Numbered list (01–06) with short descriptions
-- Electric Blue index numbers
+- Cyan index numbers
 - View All Services → `/services/`
 - Dark surface, thin border, controlled width (~22–26rem)
 
@@ -331,7 +428,7 @@ Mobile-first. Verified at: 320, 375, 390, 414, 768, 1024, 1280, 1440, 1920.
 
 ### Footer
 
-- Deep black background with Electric Blue top line (single branded detail)
+- Deep graphite background with thin cyan→yellow gradient top rule (`.ds-brand-rule`)
 - Brand area: logo, positioning statement, CTA
 - Link columns: Services, Company, Industries, Resources
 - Bottom row: copyright, Privacy Policy, Terms
@@ -340,9 +437,10 @@ Mobile-first. Verified at: 320, 375, 390, 414, 768, 1024, 1280, 1440, 1920.
 ### Global CTA component
 
 - Path: `components/sections/GlobalCTA.js`
-- Server Component — not placed on homepage yet
-- Props: `eyebrow`, `headline`, `description`, `primary_action`, `secondary_action`, `theme`
-- Themes: `dark` (default), `blue` (use sparingly)
+- Server Component
+- Props: `eyebrow`, `headline`, `description`, `primary_action`, `secondary_action`, `theme`, `ambient_glow`
+- Themes: `dark` (default); legacy `blue` maps to dark graphite (flat brand fills removed)
+- Optional ambient cyan/yellow lighting + thin gradient rule (`.ds-cta-section`)
 
 ### Phase 2 icons (Lucide)
 
@@ -381,18 +479,18 @@ Mobile-first. Verified at: 320, 375, 390, 414, 768, 1024, 1280, 1440, 1920.
 
 ### Homepage hero
 
-- Background: `#050505` with subtle radial depth (`.ds-hero-bg`) — black dominant, faint blue illumination near visual
+- Background: dark graphite with structured cyan primary light + faint yellow secondary (`.ds-hero-bg`); technical grid on desktop, reduced on mobile
 - Layout: ~54% content / ~46% visual on desktop (`lg:grid-cols-[54fr_46fr]`)
 - Mobile order: eyebrow → H1 → copy → CTAs → image
 - Hero image: `/public/images/home/hero-visual.webp` (1448 × 1086, ~4:3)
 - `next/image` with `priority`, responsive `sizes`, accurate width/height for CLS
-- Frame: subtle border, 6px radius, restrained shadow, `.ds-frame-accent` corner detail, optional `.ds-image-zoom` on hover
-- No placeholder boxes, glow, floating labels, or fake statistics
+- Frame: selective gradient border (`.ds-gradient-border`), 6px radius, restrained shadow, `.ds-frame-accent` corner detail, optional `.ds-image-zoom` on hover
+- No placeholder boxes, floating labels, or fake statistics
 - H1 is frozen per `keyword_map.md` — do not change without SEO approval
 
 ### Hero CTAs
 
-- Primary: **Start a Project** → `/contact/` (Electric Blue)
+- Primary: **Start a Project** → `/contact/` (brand gradient button)
 - Secondary: **Explore Services** → `/services/` (truthful while `/work/` has no published case studies)
 
 ### Capability strip
@@ -436,21 +534,21 @@ Mobile-first. Verified at: 320, 375, 390, 414, 768, 1024, 1280, 1440, 1920.
 
 | Section | Background |
 |---------|------------|
-| Hero | `#050505` |
-| Capability strip | `#0A0A0A` |
-| Services | `#111111` |
-| What We Build | `#050505` |
-| Why Softabyte | `#0A0A0A` |
-| Industries | `#111111` |
-| Process | `#0A0A0A` |
-| AI & Automation | `#111111` |
-| Insights | `#050505` |
-| Global CTA | `#111111` |
+| Hero | `#050607` → `#081012` |
+| Capability strip | `#080A0B` |
+| Services | `#0D1012` |
+| What We Build | `#050607` |
+| Why Softabyte | `#080A0B` |
+| Industries | `#0D1012` |
+| Process | `#080A0B` |
+| AI & Automation | `#0D1012` |
+| Insights | `#050607` |
+| Global CTA | `#0D1012` |
 
-### Electric Blue usage (Phase 3.2)
+### Brand accent usage (homepage)
 
-Good: eyebrows, primary CTAs, step numbers, selective icons, links, frame accents, hover borders  
-Bad: every icon, every heading, large glow, full blue backgrounds
+Good: eyebrows, primary gradient CTAs, step numbers, selective cyan icons, links, frame accents, cyan hover borders, yellow on final timeline nodes  
+Bad: every icon yellow, every heading gradient, large animated glows, full cyan/yellow section fills
 
 ### Icon policy (homepage)
 

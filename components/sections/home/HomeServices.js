@@ -8,7 +8,7 @@ import {
   Smartphone,
   Workflow,
 } from "lucide-react";
-import { AmbientGlow } from "@/components/ui/AmbientGlow";
+import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 import { Reveal } from "@/components/ui/Reveal";
 import { TextLink } from "@/components/ui/TextLink";
 import { services_section } from "@/config/homepage_content";
@@ -26,7 +26,13 @@ const service_icons = {
 export function HomeServices() {
   return (
     <section className="relative ds-section bg-background-secondary border-b border-border overflow-hidden">
-      <AmbientGlow variant="services" />
+      <BackgroundBlur
+        variant="primary"
+        position="bottom-left"
+        size="lg"
+        opacity={0.28}
+        mobile="reduce"
+      />
       <div className="ds-container relative z-[1]">
         <SectionHeader
           eyebrow={services_section.eyebrow}

@@ -1,18 +1,18 @@
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { AmbientGlow } from "@/components/ui/AmbientGlow";
+import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 
 const theme_styles = {
   dark: {
-    section: "bg-background-secondary border-y border-border",
+    section: "ds-cta-section bg-background-secondary border-y border-border",
     headline: "text-text-primary",
     description: "text-text-secondary",
     secondary_variant: "secondary",
   },
   blue: {
-    section: "bg-brand-primary",
-    headline: "text-white",
-    description: "text-white/85",
+    section: "ds-cta-section bg-background-deep border-y border-border",
+    headline: "text-text-primary",
+    description: "text-text-secondary",
     secondary_variant: "secondary",
   },
 };
@@ -32,16 +32,29 @@ export function GlobalCTA({
     <section
       className={`relative ds-section-tight overflow-hidden ${styles.section}`}
     >
-      {ambient_glow && theme === "dark" && <AmbientGlow variant="cta" />}
+      {ambient_glow && theme === "dark" && (
+        <>
+          <BackgroundBlur
+            variant="primary"
+            position="left-center"
+            size="xl"
+            opacity={0.4}
+            mobile="reduce"
+          />
+          <BackgroundBlur
+            variant="secondary"
+            position="bottom-right"
+            size="md"
+            opacity={0.2}
+            mobile="hide"
+          />
+        </>
+      )}
       <div className="ds-container relative z-[1]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start lg:items-center">
           <div className="lg:col-span-7 space-y-4">
             {eyebrow && (
-              <p
-                className={`ds-eyebrow ${theme === "blue" ? "text-white/80" : "text-brand-primary"}`}
-              >
-                {eyebrow}
-              </p>
+              <p className="ds-eyebrow text-brand-primary">{eyebrow}</p>
             )}
             <h2 className={`ds-h2 ${styles.headline} max-w-2xl`}>{headline}</h2>
           </div>
@@ -58,11 +71,6 @@ export function GlobalCTA({
                 <Button
                   href={secondary_action.href}
                   variant={styles.secondary_variant}
-                  className={
-                    theme === "blue"
-                      ? "!border-white/30 !text-white hover:!border-white/60 hover:!bg-white/10"
-                      : ""
-                  }
                 >
                   {secondary_action.label}
                 </Button>
