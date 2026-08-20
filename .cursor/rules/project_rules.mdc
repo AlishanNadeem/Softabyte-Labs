@@ -1,0 +1,713 @@
+---
+description: Global rules for the US-based premium technology agency website
+alwaysApply: true
+---
+
+# PROJECT
+
+We are building a premium US-based technology/software agency website.
+
+The website should combine the visual quality of a modern media/creative agency with the credibility and clarity of a premium technology company.
+
+Primary objectives:
+
+- Strong organic SEO
+- US-market positioning
+- Premium visual design
+- High conversion
+- Excellent UX
+- Excellent performance
+- Fully responsive experience
+- Smooth but performance-conscious interactions
+
+
+# TECHNOLOGY
+
+Use:
+
+- Next.js
+- App Router
+- JavaScript
+- MongoDB
+- Mongoose
+- Tailwind CSS or well-structured CSS when appropriate
+
+IMPORTANT:
+
+JavaScript ONLY.
+
+Never introduce TypeScript.
+
+Do not create:
+
+- .ts files
+- .tsx files
+- TypeScript configuration
+- TypeScript-specific application code
+
+Do not convert JavaScript files to TypeScript.
+
+
+# WEBSITE ARCHITECTURE
+
+IMPORTANT:
+
+This must NOT be a fully dynamic website.
+
+Use static/server-rendered content whenever possible.
+
+Keep these primarily static/server-rendered:
+
+- Homepage
+- About
+- Services
+- Service pages
+- Industries
+- Industry pages
+- Process
+- Technology/capabilities
+- Navigation
+- Footer
+- Contact page content
+- Privacy Policy
+- Terms
+
+Use MongoDB/backend only where persistent data is genuinely required.
+
+Potential database-driven content:
+
+- Blog posts
+- Blog categories
+- Blog authors
+- Contact submissions
+- Admin users
+- Case studies only if there is a genuine operational requirement
+
+Do NOT put normal marketing content into MongoDB simply to make it editable.
+
+Do NOT create a CMS for the entire website.
+
+
+# SEO
+
+SEO is a core architectural requirement.
+
+SEO must be considered from the beginning of every phase.
+
+Never build a page first and plan to "SEO it later."
+
+For every important page consider:
+
+- Search intent
+- Primary keyword
+- Secondary keywords
+- URL structure
+- H1
+- Heading hierarchy
+- Metadata
+- Canonical URL
+- Internal links
+- Structured data
+- Crawlability
+- Indexability
+- Performance
+- Mobile usability
+
+The website targets the United States market.
+
+Use natural US business language.
+
+Never keyword stuff.
+
+
+# SEO RULES
+
+Do not use:
+
+- Keyword stuffing
+- Hidden text
+- Hidden keywords
+- Doorway pages
+- Duplicate location pages
+- AI-generated spam
+- Fake reviews
+- Fake testimonials
+- Fake clients
+- Fake awards
+- Fake statistics
+- Unsupported claims
+- Manipulative structured data
+
+Content must be useful to people first and search engines second.
+
+
+# URL STRUCTURE
+
+Use clean, permanent URLs.
+
+Examples:
+
+/services/web-development/
+/services/mobile-app-development/
+/services/custom-software-development/
+/industries/real-estate/
+/work/project-name/
+/blog/article-name/
+
+Avoid:
+
+/page?id=123
+
+Avoid unnecessary dates in blog URLs.
+
+Avoid random IDs in public URLs.
+
+Never change an established public URL without a valid reason.
+
+
+# RENDERING
+
+Prefer:
+
+- Server Components
+- Static generation
+- Server-side rendering
+- ISR/revalidation when appropriate
+
+Use Client Components only when client-side interaction is actually required.
+
+Do NOT add "use client" unnecessarily.
+
+Do NOT fetch MongoDB data for pages that can remain static.
+
+Do NOT create unnecessary frontend-to-backend API requests.
+
+
+# DATABASE
+
+Use MongoDB with Mongoose.
+
+Only create collections with a genuine purpose.
+
+Potential collections:
+
+- admin_users
+- blog_posts
+- blog_categories
+- blog_authors
+- contact_submissions
+- case_studies
+
+Do not create unnecessary collections.
+
+Do not expose MongoDB directly to the browser.
+
+
+# NAMING CONVENTIONS
+
+IMPORTANT:
+
+Database collection names MUST use snake_case.
+
+Examples:
+
+blog_posts
+blog_categories
+admin_users
+contact_submissions
+
+Database fields MUST use snake_case.
+
+Examples:
+
+featured_image
+featured_image_alt
+seo_title
+seo_description
+focus_keyword
+published_at
+created_at
+updated_at
+
+JavaScript variables MUST use snake_case.
+
+Examples:
+
+const blog_post = ...
+const seo_title = ...
+const published_at = ...
+
+Object properties should use snake_case.
+
+API request/response fields should use snake_case.
+
+Functions do NOT have to use snake_case.
+
+Functions may use camelCase.
+
+Examples:
+
+getBlogPost()
+createBlogPost()
+generateSitemap()
+
+React components must use PascalCase.
+
+Examples:
+
+BlogCard
+ServiceCard
+HeroSection
+
+
+# DESIGN
+
+The visual direction is:
+
+Premium technology company
++
+Modern media/creative agency
+
+Desired characteristics:
+
+- Sleek
+- Elegant
+- Premium
+- Editorial
+- Sophisticated
+- Minimal
+- Strong typography
+- Generous whitespace
+- High-quality imagery
+- Strong visual hierarchy
+- Modern layouts
+- Subtle micro-interactions
+- Smooth scrolling
+
+Avoid:
+
+- Generic SaaS templates
+- Excessive glassmorphism
+- Excessive gradients
+- Excessive glow effects
+- Excessive rounded cards
+- Excessive animations
+- Clutter
+- Template-looking layouts
+
+
+# MOTION
+
+Smooth scrolling and subtle animation are important.
+
+However:
+
+Performance takes priority over animation.
+
+Prefer:
+
+- transform
+- opacity
+- GPU-friendly animations
+
+Avoid unnecessary layout animation.
+
+Avoid excessive scroll listeners.
+
+Avoid heavy animation libraries unless genuinely necessary.
+
+Respect:
+
+prefers-reduced-motion
+
+Animations must not significantly hurt:
+
+- LCP
+- CLS
+- INP
+- Accessibility
+- Mobile performance
+
+
+# PERFORMANCE
+
+Performance is a core requirement.
+
+Always consider:
+
+- Core Web Vitals
+- LCP
+- CLS
+- INP
+- TTFB
+- Image optimization
+- Font loading
+- JavaScript bundle size
+- Client Components
+- Third-party scripts
+
+Use Next.js image optimization appropriately.
+
+Lazy-load appropriate below-the-fold assets.
+
+Avoid loading unnecessary assets.
+
+Do not add dependencies without a legitimate reason.
+
+
+# RESPONSIVE DESIGN
+
+The website must be mobile-first and fully responsive.
+
+Test:
+
+320px
+375px
+390px
+414px
+768px
+1024px
+1280px
+1440px
+1920px
+
+Check:
+
+- Navigation
+- Hero
+- Typography
+- Cards
+- Forms
+- Images
+- Buttons
+- Spacing
+- Horizontal overflow
+- Animations
+- Blog readability
+
+
+# ACCESSIBILITY
+
+Use semantic HTML.
+
+Ensure:
+
+- Correct heading hierarchy
+- Accessible links
+- Accessible buttons
+- Form labels
+- Keyboard navigation
+- Visible focus states
+- Appropriate color contrast
+- Meaningful image alt text
+- Accessible navigation
+
+Do not use ARIA unnecessarily.
+
+
+# IMAGES
+
+Optimize images.
+
+Use meaningful alt text.
+
+Do not keyword-stuff alt text.
+
+Treat decorative images as decorative when appropriate.
+
+Do not use unnecessarily large images.
+
+Use responsive image loading.
+
+
+# SECURITY
+
+Never expose:
+
+- MongoDB credentials
+- Authentication secrets
+- API keys
+- Private environment variables
+- Admin credentials
+
+Use environment variables for secrets.
+
+Validate input server-side.
+
+Sanitize user-generated content before rendering.
+
+Protect admin routes.
+
+Protect API routes.
+
+Never rely only on client-side validation.
+
+
+# ADMIN
+
+The admin panel is only for genuinely backend-managed content.
+
+Potential functionality:
+
+- Admin authentication
+- Dashboard
+- Blog management
+- Categories
+- Authors
+- Contact submissions
+- Case studies if approved
+
+Do NOT turn the entire website into a CMS.
+
+Admin pages must not be indexable.
+
+
+# BLOG
+
+The blog is an important SEO system.
+
+Blog posts should support:
+
+- title
+- slug
+- excerpt
+- content
+- featured_image
+- featured_image_alt
+- author_id
+- category_id
+- tags
+- seo_title
+- seo_description
+- focus_keyword
+- secondary_keywords
+- canonical_url
+- status
+- published_at
+- created_at
+- updated_at
+
+Draft posts must never accidentally become publicly indexable.
+
+Published posts should become publicly available according to the approved SEO architecture.
+
+
+# CONTENT
+
+Content must be appropriate for the US market.
+
+Tone:
+
+- Professional
+- Clear
+- Human
+- Confident
+- Natural
+- Business-focused
+- Conversion-focused
+
+Avoid generic agency clichés.
+
+Never invent:
+
+- Clients
+- Awards
+- Testimonials
+- Statistics
+- Results
+- Certifications
+
+
+# INTERNAL LINKING
+
+Internal links must be intentional.
+
+Important relationships should connect:
+
+Homepage
+→ Services
+→ Individual Services
+→ Industries
+→ Work
+→ Blog
+→ Contact
+
+Blog articles should contextually link to relevant:
+
+- Services
+- Case studies
+- Related articles
+- Conversion pages
+
+Do not overuse internal links.
+
+
+# CODE QUALITY
+
+Before making changes:
+
+1. Inspect the existing project.
+2. Understand the current architecture.
+3. Check existing dependencies.
+4. Check existing components.
+5. Avoid unnecessary rewrites.
+
+Do not overwrite working code unnecessarily.
+
+Do not add unrelated functionality.
+
+Do not add unnecessary dependencies.
+
+Keep code readable and maintainable.
+
+
+# PHASE DEVELOPMENT
+
+This project will be developed one phase at a time.
+
+When I give you a phase prompt:
+
+ONLY implement that phase.
+
+Do NOT implement future phases.
+
+Do NOT create backend functionality before it is requested.
+
+Do NOT create admin functionality before it is requested.
+
+Do NOT create unnecessary dynamic systems.
+
+After completing a phase, report:
+
+1. What was implemented
+2. Files created
+3. Files modified
+4. Dependencies added
+5. SEO considerations
+6. Performance considerations
+7. Issues found
+8. Decisions requiring approval
+
+Do not continue to another phase without explicit instruction.
+
+# VISUAL ASSETS & ICON USAGE
+
+The website should use visual assets selectively.
+
+Do NOT create a completely text-only website.
+
+Use SOME high-quality images where they genuinely improve the design,
+such as:
+
+- Homepage hero/supporting visual
+- Selected service sections
+- Industry sections
+- Work/case-study presentation
+- Important visual storytelling sections
+
+Do NOT use images in every section.
+
+Do NOT overload the website with generic stock photography.
+
+If an image is required but no approved image has been provided:
+
+Create a clearly visible placeholder in the layout.
+
+After completing the phase, report:
+
+1. Required image filename
+2. Directory inside /public
+3. Recommended dimensions
+4. Recommended aspect ratio
+5. Description of the image that should be placed there
+6. Where the image appears on the website
+
+Example:
+
+/public/images/home/hero-visual.webp
+Recommended size: 1600 × 1200
+Aspect ratio: 4:3
+Purpose: Homepage hero supporting visual
+Suggested content: Premium digital product/interface or professional
+technology-focused visual.
+
+Do NOT automatically download random internet images unless explicitly
+requested.
+
+
+# ICONS
+
+Icons may be used selectively where they improve comprehension or visual
+hierarchy.
+
+Good uses include:
+
+- Selected service features
+- Process steps
+- UI controls
+- Feature highlights
+- Contact information
+- Some visual callouts
+
+Do NOT:
+
+- Put an icon beside every heading
+- Fill every card with icons
+- Use icons purely because empty space exists
+- Mix multiple icon libraries
+
+If an icon library becomes necessary, use ONE consistent lightweight
+library after approval.
+
+
+# ANIMATION DIRECTION
+
+The website should contain visible but restrained professional animation.
+
+Appropriate animation includes:
+
+- Fade/reveal on selected sections
+- Small vertical/horizontal entrance movement
+- Image reveal
+- Subtle hover movement
+- Button/arrow interaction
+- Underline/line animation
+- Small decorative movement
+
+Animation should make the website feel polished and smooth without becoming
+the focus of the experience.
+
+Do NOT animate every element.
+
+Do NOT use heavy animation simply to make the website appear modern.
+
+Prefer CSS transitions/animations where practical.
+
+If an animation library becomes genuinely beneficial, request approval
+before adding it.
+
+Always respect prefers-reduced-motion.
+
+
+# BEFORE CODING
+
+For every phase:
+
+1. Read these project rules.
+2. Inspect the existing project.
+3. Read relevant documentation from previous phases.
+4. Briefly explain your implementation plan.
+5. Implement ONLY the requested phase.
+6. Test the implementation.
+7. Fix errors.
+8. Report the result.
+
+If an architectural decision could significantly affect:
+
+- SEO
+- Performance
+- Database structure
+- Security
+- Future scalability
+
+stop and ask for approval before making that decision.
