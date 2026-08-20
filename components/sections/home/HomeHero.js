@@ -59,7 +59,7 @@ export function HomeHero() {
             className="group ds-hero-image-frame ds-frame-accent m-0 order-2 ds-hero-entrance ds-hero-entrance--scale"
             style={{ "--hero-delay": "200ms" }}
           >
-            <div className="relative overflow-hidden rounded-md border border-border bg-surface shadow-[0_24px_48px_-24px_rgba(0,0,0,0.75)]">
+            <div className="relative overflow-hidden rounded-md ds-gradient-border shadow-[0_24px_48px_-24px_rgba(0,0,0,0.75)]">
               <Image
                 src="/images/home/hero-visual.webp"
                 alt={hero.image.alt}

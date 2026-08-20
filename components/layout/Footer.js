@@ -34,7 +34,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border bg-background-deep">
-      <div className="h-px w-full bg-brand-primary" aria-hidden="true" />
+      <div className="ds-brand-rule" aria-hidden="true" />
 
       <div className="ds-container py-14 md:py-16 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
