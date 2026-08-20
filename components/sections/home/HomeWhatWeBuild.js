@@ -5,6 +5,7 @@ import {
   MonitorSmartphone,
   Workflow,
 } from "lucide-react";
+import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 import { Reveal } from "@/components/ui/Reveal";
 import { what_we_build_section } from "@/config/homepage_content";
 import { SectionHeader } from "@/components/sections/home/SectionHeader";
@@ -156,8 +157,15 @@ export function HomeWhatWeBuild() {
   const visual_variants = ["product", "workflow"];
 
   return (
-    <section className="ds-section bg-background-deep border-b border-border">
-      <div className="ds-container">
+    <section className="relative ds-section bg-background-deep border-b border-border overflow-hidden">
+      <BackgroundBlur
+        variant="secondary"
+        position="top-right"
+        size="md"
+        opacity={0.16}
+        mobile="hide"
+      />
+      <div className="ds-container relative z-[1]">
         <SectionHeader
           eyebrow={what_we_build_section.eyebrow}
           headline={what_we_build_section.headline}

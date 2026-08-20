@@ -291,7 +291,7 @@ Dark graphite base + subtle surface variation + cyan structural lighting + very 
 - No random Electric Blue blobs
 - No left-cyan / right-yellow split compositions
 
-Utility classes: `.ds-hero-bg`, `.ds-ambient-glow--*`, `.ds-brand-rule`, `.ds-cta-section`
+Utility classes: `.ds-hero-bg`, `.ds-bg-blur`, `.ds-brand-rule`, `.ds-cta-section`
 
 ---
 

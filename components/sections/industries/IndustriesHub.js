@@ -24,7 +24,22 @@ export function IndustriesHub() {
         eyebrow={hub.hero.eyebrow}
         h1={hub.hero.h1}
         description={hub.hero.description}
-        ambient_variant={hub.hero.ambient_variant}
+        blurs={[
+          {
+            variant: "primary",
+            position: "top-right",
+            size: "xl",
+            opacity: 0.4,
+            mobile: "reduce",
+          },
+          {
+            variant: "secondary",
+            position: "bottom-right",
+            size: "sm",
+            opacity: 0.14,
+            mobile: "hide",
+          },
+        ]}
       />
       <ServiceSection theme="primary">
         <ContentIntro {...hub.intro} />

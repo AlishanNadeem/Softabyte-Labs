@@ -23,6 +23,10 @@ import {
   technology_section_copy,
 } from "@/config/services_technology";
 import { service_visuals } from "@/config/services_visuals";
+import {
+  blur_preset_primary,
+  service_hero_blurs,
+} from "@/config/background_blur";
 
 const base_breadcrumbs = [
   { label: "Home", href: "/" },
@@ -136,10 +140,10 @@ export function ServicePage({ content }) {
         h1={content.hero.h1}
         description={content.hero.description}
         service_slug={content.slug}
-        ambient_variant={content.hero.ambient_variant}
         align={content.hero.align}
         layout={content.hero.layout}
         hero_visual={hero_visual}
+        blurs={service_hero_blurs[content.slug] || blur_preset_primary}
       />
       {content.sections.map((section, index) =>
         render_section(section, index, content.slug)

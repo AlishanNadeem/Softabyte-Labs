@@ -1,3 +1,5 @@
+import { BackgroundBlurLayer } from "@/components/ui/BackgroundBlur";
+
 const theme_classes = {
   deep: "bg-background-deep",
   primary: "bg-background-primary",
@@ -9,13 +11,17 @@ export function ServiceSection({
   theme = "primary",
   border = true,
   className = "",
+  blurs = [],
   children,
 }) {
+  const has_blurs = blurs?.length > 0;
+
   return (
     <section
-      className={`ds-section ${theme_classes[theme] || theme_classes.primary} ${border ? "border-b border-border" : ""} ${className}`.trim()}
+      className={`relative ds-section ${theme_classes[theme] || theme_classes.primary} ${border ? "border-b border-border" : ""} ${has_blurs ? "overflow-hidden" : ""} ${className}`.trim()}
     >
-      <div className="ds-container">{children}</div>
+      {has_blurs && <BackgroundBlurLayer items={blurs} />}
+      <div className="ds-container relative z-[1]">{children}</div>
     </section>
   );
 }

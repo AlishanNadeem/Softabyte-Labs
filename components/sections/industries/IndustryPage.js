@@ -17,6 +17,10 @@ import {
   WideVisual,
 } from "@/components/sections/services/VisualSections";
 import { industry_visuals } from "@/config/industries_visuals";
+import {
+  blur_preset_primary,
+  industry_hero_blurs,
+} from "@/config/background_blur";
 
 const base_breadcrumbs = [
   { label: "Home", href: "/" },
@@ -119,11 +123,11 @@ export function IndustryPage({ content }) {
         h1={content.hero.h1}
         description={content.hero.description}
         industry_slug={content.slug}
-        ambient_variant={content.hero.ambient_variant}
         layout={content.hero.layout}
         hero_visual={hero_visual}
         primary_action={content.hero.primary_action}
         secondary_action={content.hero.secondary_action}
+        blurs={industry_hero_blurs[content.slug] || blur_preset_primary}
       />
       {content.section_order.map((section_key, index) =>
         render_section(

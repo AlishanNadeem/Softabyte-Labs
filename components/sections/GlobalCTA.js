@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { AmbientGlow } from "@/components/ui/AmbientGlow";
+import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 
 const theme_styles = {
   dark: {
@@ -9,10 +9,8 @@ const theme_styles = {
     description: "text-text-secondary",
     secondary_variant: "secondary",
   },
-  /* Legacy alias — kept dark; flat Electric Blue fills removed */
   blue: {
-    section:
-      "ds-cta-section bg-background-deep border-y border-border",
+    section: "ds-cta-section bg-background-deep border-y border-border",
     headline: "text-text-primary",
     description: "text-text-secondary",
     secondary_variant: "secondary",
@@ -34,7 +32,24 @@ export function GlobalCTA({
     <section
       className={`relative ds-section-tight overflow-hidden ${styles.section}`}
     >
-      {ambient_glow && theme === "dark" && <AmbientGlow variant="cta" />}
+      {ambient_glow && theme === "dark" && (
+        <>
+          <BackgroundBlur
+            variant="primary"
+            position="left-center"
+            size="xl"
+            opacity={0.4}
+            mobile="reduce"
+          />
+          <BackgroundBlur
+            variant="secondary"
+            position="bottom-right"
+            size="md"
+            opacity={0.2}
+            mobile="hide"
+          />
+        </>
+      )}
       <div className="ds-container relative z-[1]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start lg:items-center">
           <div className="lg:col-span-7 space-y-4">

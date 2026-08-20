@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/ui/Reveal";
+import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 import { TextLink } from "@/components/ui/TextLink";
 import { process_section } from "@/config/homepage_content";
 import { SectionHeader } from "@/components/sections/home/SectionHeader";
@@ -7,8 +8,15 @@ export function HomeProcess() {
   const steps = process_section.steps;
 
   return (
-    <section className="ds-section bg-background-primary border-b border-border">
-      <div className="ds-container">
+    <section className="relative ds-section bg-background-primary border-b border-border overflow-hidden">
+      <BackgroundBlur
+        variant="primary"
+        position="far-right"
+        size="md"
+        opacity={0.22}
+        mobile="hide"
+      />
+      <div className="ds-container relative z-[1]">
         <SectionHeader
           eyebrow={process_section.eyebrow}
           headline={process_section.headline}

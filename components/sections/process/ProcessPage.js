@@ -1,5 +1,5 @@
 import { GlobalCTA } from "@/components/sections/GlobalCTA";
-import { AmbientGlow } from "@/components/ui/AmbientGlow";
+import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 import { Reveal } from "@/components/ui/Reveal";
 import { Breadcrumbs } from "@/components/sections/services/Breadcrumbs";
 import {
@@ -18,9 +18,13 @@ export function ProcessPage() {
   return (
     <>
       <section className="relative border-b border-border bg-background-deep overflow-hidden">
-        {page.hero.ambient_variant && (
-          <AmbientGlow variant={page.hero.ambient_variant} />
-        )}
+        <BackgroundBlur
+          variant="primary"
+          position="far-right"
+          size="md"
+          opacity={0.26}
+          mobile="hide"
+        />
         <div className="ds-container relative z-[1] py-12 md:py-16 lg:py-20">
           <Breadcrumbs
             items={[{ label: "Home", href: "/" }, { label: "Process" }]}
@@ -57,7 +61,18 @@ export function ProcessPage() {
         <ContentIntro {...page.overview} />
       </ServiceSection>
 
-      <ServiceSection theme="secondary">
+      <ServiceSection
+        theme="secondary"
+        blurs={[
+          {
+            variant: "primary",
+            position: "right-center",
+            size: "md",
+            opacity: 0.2,
+            mobile: "hide",
+          },
+        ]}
+      >
         <Reveal>
           <SectionHeader
             eyebrow="Six stages"
