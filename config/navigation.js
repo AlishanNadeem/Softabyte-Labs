@@ -86,9 +86,8 @@ export const industry_hub = {
 };
 
 export const primary_navigation = [
-  { label: "Work", href: "/work/" },
-  { label: "Process", href: "/process/" },
   { label: "About", href: "/about/" },
+  { label: "Process", href: "/process/" },
   { label: "Blog", href: "/blog/" },
 ];
 
@@ -97,7 +96,6 @@ export const footer_navigation = {
   company: [
     { label: "About", href: "/about/" },
     { label: "Process", href: "/process/" },
-    { label: "Work", href: "/work/" },
     { label: "Contact", href: "/contact/" },
   ],
   industries: industry_navigation.map(({ label, href }) => ({ label, href })),

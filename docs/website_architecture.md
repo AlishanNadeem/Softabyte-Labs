@@ -208,3 +208,17 @@ It can win by:
 5. Six approved industry verticals (see `industry_strategy.md`); pages published when content-ready — not all at once.
 6. Six core services only; no `/services/ecommerce-development/`.
 7. Do not claim US-based team/delivery unless verified and approved.
+
+---
+
+## 9. Implementation note — Phase 9 Blog (August 22, 2026)
+
+Live routes:
+
+- `/blog/`
+- `/blog/[slug]/` (3 published informational articles)
+
+Phase 9 uses a **local JavaScript repository** for public frontend + SEO.  
+Phase 10 remains the planned MongoDB + Admin CMS migration path.
+
+**Phase 8 / Work remains deferred.** Do not publish `/work/` or fake case studies.

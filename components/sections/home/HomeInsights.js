@@ -1,9 +1,14 @@
+import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { TextLink } from "@/components/ui/TextLink";
 import { insights_section } from "@/config/homepage_content";
 import { SectionHeader } from "@/components/sections/home/SectionHeader";
+import { format_blog_date } from "@/lib/blog/helpers";
+import { get_latest_blog_posts } from "@/lib/blog/repository";
 
 export function HomeInsights() {
+  const posts = get_latest_blog_posts(3);
+
   return (
     <section className="ds-section bg-background-deep border-b border-border">
       <div className="ds-container">
@@ -13,32 +18,46 @@ export function HomeInsights() {
           description={insights_section.description}
         />
         <Reveal>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-            <div className="lg:col-span-4 rounded-md border border-border bg-background-secondary p-6 md:p-8 flex flex-col justify-center">
-              <p className="ds-eyebrow text-brand-primary mb-3">
-                {insights_section.status}
-              </p>
-              <p className="ds-body text-text-secondary">
-                Practical articles on software decisions, delivery, and operations — published when ready.
-              </p>
+          {posts.length === 0 ? (
+            <p className="ds-body text-text-secondary">
+              Practical articles on software decisions, delivery, and operations
+              — published when ready.
+            </p>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-8">
+              {posts.map((post) => (
+                <article
+                  key={post.slug}
+                  className="rounded-md border border-border bg-background-secondary p-5 md:p-6 transition-colors duration-200 hover:border-brand-primary-border"
+                >
+                  <p className="ds-eyebrow text-brand-primary mb-3">
+                    {post.category}
+                  </p>
+                  <h3 className="ds-h4 text-text-primary mb-3">
+                    <Link
+                      href={post.path}
+                      className="hover:text-brand-primary transition-colors duration-200 ds-focus rounded-sm"
+                    >
+                      {post.title}
+                    </Link>
+                  </h3>
+                  <p className="ds-body-small text-text-secondary mb-4">
+                    {post.excerpt}
+                  </p>
+                  <p className="text-xs text-text-muted">
+                    <time dateTime={post.published_at}>
+                      {format_blog_date(post.published_at)}
+                    </time>
+                    <span aria-hidden="true"> · </span>
+                    {post.reading_time_minutes} min read
+                  </p>
+                </article>
+              ))}
             </div>
-            <div className="lg:col-span-8 rounded-md border border-border bg-background-secondary p-6 md:p-8">
-              <p className="ds-label text-text-muted mb-4">Planned topics</p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                {insights_section.topics.map((topic) => (
-                  <li
-                    key={topic}
-                    className="ds-body-small text-text-primary border border-border rounded-sm bg-background-primary px-4 py-3"
-                  >
-                    {topic}
-                  </li>
-                ))}
-              </ul>
-              <TextLink href={insights_section.cta.href}>
-                {insights_section.cta.label}
-              </TextLink>
-            </div>
-          </div>
+          )}
+          <TextLink href={insights_section.cta.href}>
+            {insights_section.cta.label}
+          </TextLink>
         </Reveal>
       </div>
     </section>

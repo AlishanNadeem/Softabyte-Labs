@@ -209,15 +209,8 @@ export const insights_section = {
   eyebrow: "Insights",
   headline: "Articles and guides for software decision-makers",
   description:
-    "Practical writing on software decisions, product delivery, and digital operations. Articles are not live yet — the library launches when content is ready.",
-  status: "Insights coming soon",
-  topics: [
-    "Custom software vs off-the-shelf",
-    "Web product performance and SEO",
-    "Mobile product planning",
-    "AI automation for operations",
-  ],
-  cta: { label: "Visit the blog", href: "/blog/" },
+    "Practical writing on software decisions, product delivery, and digital operations.",
+  cta: { label: "View all insights", href: "/blog/" },
 };
 
 export const final_cta = {

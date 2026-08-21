@@ -245,3 +245,25 @@ Do not reference in metadata until files exist.
 - Governing law: no invented US state jurisdiction
 - Temporary footer phone/location excluded from legal contact authority
 - Privacy contact: `info@softabytelabs.com` + `/contact/`
+
+---
+
+## 16. Phase 9 — Blog frontend + SEO architecture (August 22, 2026)
+
+| Requirement | Status | Evidence |
+|---|---|---|
+| `/blog/` hub | **PASS** | `app/blog/page.js`, `BlogHubView` |
+| `/blog/[slug]/` static articles | **PASS** | `generateStaticParams`, local repository |
+| 3 published informational articles | **PASS** | `lib/blog/posts/*` |
+| Local repository (no MongoDB blog) | **PASS** | `lib/blog/repository.js` |
+| Draft/published gating | **PASS** | published-only public accessors |
+| BlogPosting + BreadcrumbList | **PASS** | `lib/seo/blog_structured_data.js` |
+| Sitemap includes hub + 3 posts (24 URLs) | **PASS** | `app/sitemap.js` + static routes |
+| Blog in header + mobile + footer Resources | **PASS** | `config/navigation.js` |
+| Homepage Insights uses live posts | **PASS** | `HomeInsights.js` |
+| No Work / Admin / CMS / Phase 8 | **PASS** | Scope restrained |
+| Docs | **PASS** | `docs/blog_architecture.md` |
+
+### Informational keyword ownership
+
+Articles target decision-stage queries. Commercial ownership remains on service/industry pages. Internal links support money pages without H1/title cannibalization.
