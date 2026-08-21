@@ -25,19 +25,27 @@ export const service_visuals = {
   },
   "web-development": {
     primary: {
+      src: "/images/services/web-development/web-experience.webp",
       filename: "/public/images/services/web-development/web-experience.webp",
+      width: 1400,
+      height: 1000,
       dimensions: "1400 × 1000",
       aspect_ratio: "7:5",
       aspect_class: "aspect-[7/5]",
+      alt: "Premium responsive web application displayed on a desktop screen",
       purpose:
         "Premium responsive web application or business website displayed on desktop/laptop.",
       placement: "Wide visual after introduction",
     },
     secondary: {
+      src: "/images/services/web-development/responsive-experience.webp",
       filename: "/public/images/services/web-development/responsive-experience.webp",
+      width: 1200,
+      height: 900,
       dimensions: "1200 × 900",
       aspect_ratio: "4:3",
       aspect_class: "aspect-[4/3]",
+      alt: "Responsive website shown across desktop, tablet, and mobile screens",
       purpose:
         "Desktop, tablet, and mobile website interface presentation.",
       placement: "Responsive experience section",
