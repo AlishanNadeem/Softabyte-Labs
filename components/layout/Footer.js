@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Clock, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/layout/Logo";
 import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
@@ -9,6 +9,7 @@ import {
   footer_statement,
   primary_cta,
 } from "@/config/navigation";
+import { company_legal_name, footer_business_info } from "@/lib/site";
 
 function FooterColumn({ title, links }) {
   return (
@@ -55,6 +56,46 @@ export function Footer() {
               {primary_cta.label}
               <ArrowUpRight size={16} strokeWidth={1.75} aria-hidden="true" />
             </Button>
+
+            <div className="pt-2 space-y-3 max-w-sm">
+              <p className="text-sm font-medium text-text-primary">
+                {company_legal_name}
+              </p>
+              <ul className="space-y-2.5 text-sm text-text-secondary">
+                <li className="flex items-start gap-2.5">
+                  <MapPin
+                    size={16}
+                    strokeWidth={1.75}
+                    className="mt-0.5 shrink-0 text-brand-primary"
+                    aria-hidden="true"
+                  />
+                  <span>{footer_business_info.location}</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <Phone
+                    size={16}
+                    strokeWidth={1.75}
+                    className="mt-0.5 shrink-0 text-brand-primary"
+                    aria-hidden="true"
+                  />
+                  <a
+                    href={footer_business_info.phone_href}
+                    className="break-words hover:text-brand-primary transition-colors duration-200 ds-focus rounded-sm"
+                  >
+                    {footer_business_info.phone}
+                  </a>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <Clock
+                    size={16}
+                    strokeWidth={1.75}
+                    className="mt-0.5 shrink-0 text-brand-primary"
+                    aria-hidden="true"
+                  />
+                  <span>{footer_business_info.business_hours}</span>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
@@ -73,7 +114,7 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <p className="text-xs text-text-muted">
-            © {current_year} Softabyte Labs. All rights reserved.
+            © {current_year} {company_legal_name}. All rights reserved.
           </p>
           <nav aria-label="Legal">
             <ul className="flex flex-wrap gap-4 sm:gap-6">
