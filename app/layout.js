@@ -3,6 +3,7 @@ import Script from "next/script";
 import { font_variables, poppins } from "@/lib/fonts";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { get_sitewide_structured_data } from "@/lib/seo/structured_data";
 import { site_description, site_name, site_url } from "@/lib/site";
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );
