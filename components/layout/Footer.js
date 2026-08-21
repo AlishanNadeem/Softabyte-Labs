@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Clock, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/layout/Logo";
 import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
@@ -83,6 +83,20 @@ export function Footer() {
                     className="break-words hover:text-brand-primary transition-colors duration-200 ds-focus rounded-sm"
                   >
                     {footer_business_info.phone}
+                  </a>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <Mail
+                    size={16}
+                    strokeWidth={1.75}
+                    className="mt-0.5 shrink-0 text-brand-primary"
+                    aria-hidden="true"
+                  />
+                  <a
+                    href={footer_business_info.email_href}
+                    className="break-all hover:text-brand-primary transition-colors duration-200 ds-focus rounded-sm"
+                  >
+                    {footer_business_info.email}
                   </a>
                 </li>
                 <li className="flex items-start gap-2.5">
