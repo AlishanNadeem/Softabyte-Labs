@@ -1539,6 +1539,15 @@ a:hover .ds-arrow-shift {
     box-shadow var(--motion-duration-fast) ease;
 }
 
+.ds-input::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+.ds-input--placeholder {
+  color: var(--text-muted);
+}
+
 .ds-input:hover {
   border-color: var(--border-strong);
 }

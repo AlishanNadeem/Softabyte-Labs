@@ -62,26 +62,55 @@ export const contact_page = {
     source_page: "/contact/",
     success_message:
       "Thanks — your project inquiry has been received. We’ll review the details and follow up using the contact information you provided.",
+    sensitive_data_note:
+      "Please do not submit passwords, payment information, medical records, or other sensitive information.",
     privacy_note:
-      "Share only the information needed to discuss your project. Please do not submit passwords, payment information, medical records, or other sensitive data.",
+      "By submitting this form, you agree that Softabyte Labs may use the information provided to respond to your project inquiry. See our",
     service_interest_options: SERVICE_INTEREST_OPTIONS,
     budget_range_options: BUDGET_RANGE_OPTIONS,
     preferred_contact_method_options: PREFERRED_CONTACT_METHOD_OPTIONS,
     fields: {
-      full_name: { label: "Full name", required: true },
-      email: { label: "Work email", required: true },
-      company_name: { label: "Company", required: false },
-      phone: { label: "Phone", required: false },
-      service_interest: { label: "Service interest", required: true },
-      budget_range: { label: "Budget range", required: false },
+      full_name: {
+        label: "Full name",
+        required: true,
+        placeholder: "John Smith",
+      },
+      email: {
+        label: "Work email",
+        required: true,
+        placeholder: "john@company.com",
+      },
+      company_name: {
+        label: "Company",
+        required: false,
+        placeholder: "Acme Logistics",
+      },
+      phone: {
+        label: "Phone",
+        required: false,
+        placeholder: "+1 (555) 123-4567",
+      },
+      service_interest: {
+        label: "Service interest",
+        required: true,
+        placeholder: "Select a service",
+      },
+      budget_range: {
+        label: "Budget range",
+        required: false,
+        placeholder: "Select a budget range",
+      },
       preferred_contact_method: {
         label: "Preferred contact method",
         required: false,
+        placeholder: "Select a preferred method",
       },
       project_description: {
         label: "Project description",
         required: true,
         help: "Goals, users, current systems, and what success looks like.",
+        placeholder:
+          "Tell us about your project, current challenge, desired features, and any timeline you have in mind.",
       },
     },
   },

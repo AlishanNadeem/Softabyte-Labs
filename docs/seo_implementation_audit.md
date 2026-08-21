@@ -210,3 +210,38 @@ Do not reference in metadata until files exist.
 | Honeypot + server validation | **PASS** | `lib/contact/validate.js` |
 | No Admin / Blog / email / uploads | **PASS** | Scope restrained |
 | Build without DB connection | **PASS** | DB connects only on POST request |
+
+---
+
+## 15. Phase 7 — Privacy, Terms, Contact security hardening (August 22, 2026)
+
+| Requirement | Status | Evidence |
+|---|---|---|
+| `/privacy-policy/` | **PASS** | `app/privacy-policy/page.js`, `config/privacy_content.js` |
+| `/terms/` | **PASS** | `app/terms/page.js`, `config/terms_content.js` |
+| Legal pages static + metadata/canonical | **PASS** | `create_page_metadata()`, index follow |
+| Sitemap includes 20 indexable URLs | **PASS** | Added privacy-policy + terms in `get_indexable_static_routes()` |
+| Footer legal links resolve | **PASS** | Existing `/privacy-policy/`, `/terms/` |
+| Contact privacy notice + Privacy Policy link | **PASS** | `ContactForm.js`, `contact_content.js` |
+| Shared Upstash rate limiting | **PASS** | `@upstash/ratelimit` + `@upstash/redis`, `lib/contact/rate_limit.js` |
+| No in-memory production limiter | **PASS** | Upstash Redis only |
+| Origin validation | **PASS** | `lib/contact/origin.js` |
+| Form timing heuristic | **PASS** | `lib/contact/timing.js` (1800ms min) |
+| Honeypot preserved | **PASS** | Silent success discard |
+| No CAPTCHA / Turnstile by default | **PASS** | Documented for future |
+| No cookie banner / analytics | **PASS** | Matches current site behavior |
+| No email notifications | **PASS** | DB persistence only |
+| Contact schema unchanged | **PASS** | No IP / timing fields in MongoDB |
+| Build without MongoDB/Redis | **PASS** | Runtime-only connections |
+| Security docs | **PASS** | `docs/contact_security.md` |
+
+### Sitemap URL count (Phase 7)
+
+20 production URLs: home, services hub + 6, industries hub + 6, about, process, contact, privacy-policy, terms.
+
+### Legal content notes
+
+- Operational website drafts — counsel review recommended before final production reliance
+- Governing law: no invented US state jurisdiction
+- Temporary footer phone/location excluded from legal contact authority
+- Privacy contact: `info@softabytelabs.com` + `/contact/`

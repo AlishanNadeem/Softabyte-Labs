@@ -1,6 +1,7 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 
 const initial_form = {
@@ -17,12 +18,17 @@ const initial_form = {
 
 export function ContactForm({ form_config }) {
   const form_id = useId();
+  const form_started_at_ref = useRef(null);
   const [values, set_values] = useState(initial_form);
   const [errors, set_errors] = useState({});
   const [status, set_status] = useState("idle");
   const [server_message, set_server_message] = useState("");
 
   const fields = form_config.fields;
+
+  useEffect(() => {
+    form_started_at_ref.current = Date.now();
+  }, []);
 
   function field_id(name) {
     return `${form_id}-${name}`;
@@ -98,10 +104,19 @@ export function ContactForm({ form_config }) {
           project_description: values.project_description,
           website_url: values.website_url,
           source_page: form_config.source_page,
+          form_started_at: form_started_at_ref.current ?? Date.now(),
         }),
       });
 
       const payload = await response.json().catch(() => null);
+
+      if (response.status === 429) {
+        set_status("rate_limited");
+        set_server_message(
+          "You've sent several requests recently. Please wait a little before trying again."
+        );
+        return;
+      }
 
       if (!response.ok || !payload?.success) {
         if (payload?.errors) {
@@ -124,6 +139,7 @@ export function ContactForm({ form_config }) {
       set_status("success");
       set_server_message(form_config.success_message);
       set_values(initial_form);
+      form_started_at_ref.current = Date.now();
     } catch {
       set_status("server_error");
       set_server_message(
@@ -168,6 +184,7 @@ export function ContactForm({ form_config }) {
             name="full_name"
             type="text"
             autoComplete="name"
+            placeholder={fields.full_name.placeholder}
             value={values.full_name}
             onChange={(event) => update_field("full_name", event.target.value)}
             aria-invalid={Boolean(errors.full_name)}
@@ -191,6 +208,7 @@ export function ContactForm({ form_config }) {
             name="email"
             type="email"
             autoComplete="email"
+            placeholder={fields.email.placeholder}
             value={values.email}
             onChange={(event) => update_field("email", event.target.value)}
             aria-invalid={Boolean(errors.email)}
@@ -211,6 +229,7 @@ export function ContactForm({ form_config }) {
             name="company_name"
             type="text"
             autoComplete="organization"
+            placeholder={fields.company_name.placeholder}
             value={values.company_name}
             onChange={(event) =>
               update_field("company_name", event.target.value)
@@ -235,6 +254,7 @@ export function ContactForm({ form_config }) {
             name="phone"
             type="tel"
             autoComplete="tel"
+            placeholder={fields.phone.placeholder}
             value={values.phone}
             onChange={(event) => update_field("phone", event.target.value)}
             aria-invalid={Boolean(errors.phone)}
@@ -264,10 +284,10 @@ export function ContactForm({ form_config }) {
                 ? error_id("service_interest")
                 : undefined
             }
-            className="ds-input"
+            className={`ds-input ${!values.service_interest ? "ds-input--placeholder" : ""}`.trim()}
             disabled={is_submitting}
           >
-            <option value="">Select a service</option>
+            <option value="">{fields.service_interest.placeholder}</option>
             {form_config.service_interest_options.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -293,10 +313,10 @@ export function ContactForm({ form_config }) {
             aria-describedby={
               errors.budget_range ? error_id("budget_range") : undefined
             }
-            className="ds-input"
+            className={`ds-input ${!values.budget_range ? "ds-input--placeholder" : ""}`.trim()}
             disabled={is_submitting}
           >
-            <option value="">Optional</option>
+            <option value="">{fields.budget_range.placeholder}</option>
             {form_config.budget_range_options.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -325,10 +345,12 @@ export function ContactForm({ form_config }) {
                 ? error_id("preferred_contact_method")
                 : undefined
             }
-            className="ds-input"
+            className={`ds-input ${!values.preferred_contact_method ? "ds-input--placeholder" : ""}`.trim()}
             disabled={is_submitting}
           >
-            <option value="">Optional</option>
+            <option value="">
+              {fields.preferred_contact_method.placeholder}
+            </option>
             {form_config.preferred_contact_method_options.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -350,6 +372,7 @@ export function ContactForm({ form_config }) {
             id={field_id("project_description")}
             name="project_description"
             rows={6}
+            placeholder={fields.project_description.placeholder}
             value={values.project_description}
             onChange={(event) =>
               update_field("project_description", event.target.value)
@@ -380,11 +403,26 @@ export function ContactForm({ form_config }) {
         />
       </div>
 
-      <p className="ds-body-small text-text-muted mt-5 mb-6">
-        {form_config.privacy_note}
-      </p>
+      {/* Timing signal is sent in the JSON body (form_started_at); not a focusable field */}
+
+      <div className="mt-5 mb-6 space-y-3">
+        <p className="ds-body-small text-text-muted">
+          {form_config.sensitive_data_note}
+        </p>
+        <p className="ds-body-small text-text-muted">
+          {form_config.privacy_note}{" "}
+          <Link
+            href="/privacy-policy/"
+            className="text-brand-primary hover:underline ds-focus rounded-sm"
+          >
+            Privacy Policy
+          </Link>
+          .
+        </p>
+      </div>
 
       {(status === "server_error" ||
+        status === "rate_limited" ||
         (status === "validation_error" && server_message)) && (
         <p
           className="ds-body-small text-red-400 mb-4"
