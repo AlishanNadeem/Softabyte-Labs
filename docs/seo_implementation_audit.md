@@ -267,3 +267,21 @@ Do not reference in metadata until files exist.
 ### Informational keyword ownership
 
 Articles target decision-stage queries. Commercial ownership remains on service/industry pages. Internal links support money pages without H1/title cannibalization.
+
+---
+
+## 17. Phase 10 — Admin + Blog CMS + Contact submissions (August 22, 2026)
+
+| Requirement | Status | Evidence |
+|---|---|---|
+| Admin auth (bcrypt + hashed sessions) | **PASS** | `lib/admin/*`, cookie HttpOnly |
+| Admin noindex + robots disallow | **PASS** | layouts, middleware, `robots.js` |
+| `blog_posts` MongoDB source | **PASS** | public repository + admin CMS |
+| Existing 3 URLs/dates preserved via migration | **PASS** | `npm run migrate-blog` |
+| Structured block editor | **PASS** | `BlogBlockEditor` |
+| Published slug lock | **PASS** | validation + form |
+| Contact submissions viewer/status | **PASS** | `/admin/contact-submissions/` |
+| Phase 7 contact security unchanged | **PASS** | public `/api/contact/` untouched |
+| Build without live MongoDB requirement | **PASS** | dynamic Blog routes; empty fallback |
+| No Phase 8 / newsletter / analytics | **PASS** | scope restrained |
+| Docs | **PASS** | `docs/admin_cms_architecture.md` |

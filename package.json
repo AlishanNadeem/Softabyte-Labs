@@ -6,11 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "create-admin": "node scripts/create_admin.mjs",
+    "migrate-blog": "node scripts/migrate_blog_posts.mjs"
   },
   "dependencies": {
     "@upstash/ratelimit": "^2.0.8",
     "@upstash/redis": "^1.38.2",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
     "lucide-react": "^1.33.0",
     "mongodb": "^7.5.0",
     "next": "16.3.1",

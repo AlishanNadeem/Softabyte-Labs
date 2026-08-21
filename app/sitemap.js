@@ -4,11 +4,14 @@ import {
 } from "@/lib/seo/structured_data";
 import { get_published_blog_posts } from "@/lib/blog/repository";
 
-export default function sitemap() {
-  const static_routes = get_indexable_static_routes();
-  const published_posts = get_published_blog_posts().map((post) => ({
-    slug: post.slug,
-  }));
+export const dynamic = "force-dynamic";
 
-  return [...static_routes, ...get_blog_sitemap_entries(published_posts)];
+export default async function sitemap() {
+  const static_routes = get_indexable_static_routes();
+  const published_posts = await get_published_blog_posts();
+  const blog_entries = get_blog_sitemap_entries(
+    published_posts.map((post) => ({ slug: post.slug }))
+  );
+
+  return [...static_routes, ...blog_entries];
 }

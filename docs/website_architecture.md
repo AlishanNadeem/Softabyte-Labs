@@ -218,7 +218,14 @@ Live routes:
 - `/blog/`
 - `/blog/[slug]/` (3 published informational articles)
 
-Phase 9 uses a **local JavaScript repository** for public frontend + SEO.  
-Phase 10 remains the planned MongoDB + Admin CMS migration path.
+Phase 9 used a **local JavaScript repository** for public frontend + SEO.
+
+## 10. Implementation note — Phase 10 Admin + CMS (August 22, 2026)
+
+- MongoDB `blog_posts` is the production Blog source
+- Internal Admin at `/admin/` (noindex, not in public nav)
+- Collections: `contact_submissions`, `blog_posts`, `admin_users`, `admin_sessions`
+- Migrate seed posts with `npm run migrate-blog`
+- Create admins with `npm run create-admin`
 
 **Phase 8 / Work remains deferred.** Do not publish `/work/` or fake case studies.

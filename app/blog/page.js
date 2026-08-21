@@ -11,6 +11,8 @@ import {
   get_blog_hub_schema,
 } from "@/lib/seo/blog_structured_data";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = create_page_metadata({
   title: blog_hub.seo.title,
   description: blog_hub.seo.description,
@@ -18,9 +20,11 @@ export const metadata = create_page_metadata({
   title_absolute: true,
 });
 
-export default function BlogPage() {
-  const posts = get_published_blog_posts();
-  const featured_post = get_featured_blog_post();
+export default async function BlogPage() {
+  const [posts, featured_post] = await Promise.all([
+    get_published_blog_posts(),
+    get_featured_blog_post(),
+  ]);
 
   return (
     <>

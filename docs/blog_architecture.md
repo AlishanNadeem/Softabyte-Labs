@@ -1,8 +1,6 @@
-# Blog Architecture — Phase 9
+# Blog Architecture
 
-**Project:** Softabyte Labs  
-**Date:** August 22, 2026  
-**Status:** Frontend + SEO architecture (local content source)
+**Updated:** Phase 10 — August 22, 2026
 
 ---
 
@@ -11,142 +9,82 @@
 | Route | Purpose |
 |---|---|
 | `/blog/` | Insights hub |
-| `/blog/[slug]/` | Published article pages |
-
-Trailing-slash + apex canonical policy applies.
-
-Phase 8 `/work/` remains **deferred** and is not built.
+| `/blog/[slug]/` | Published articles |
 
 ---
 
-## Content source (Phase 9)
+## Content source
 
-Local JavaScript only:
+| Phase | Source |
+|---|---|
+| Phase 9 | Local JavaScript (`lib/blog/posts/*`) |
+| Phase 10 | MongoDB `blog_posts` (production) |
 
-- `lib/blog/posts.js` — registry
-- `lib/blog/posts/*.js` — article documents
-- `lib/blog/repository.js` — public accessors
-- `lib/blog/helpers.js` — reading time, dates, TOC helpers
+Phase 9 local files remain as migration seed / reference only.
 
-No MongoDB blog collection.  
-No CMS.  
-No Admin.  
-No blog API.
-
----
-
-## Repository API
-
-UI consumes:
+Public UI still consumes repository helpers:
 
 - `get_published_blog_posts()`
-- `get_blog_post_by_slug(slug)`
+- `get_blog_post_by_slug()`
 - `get_featured_blog_post()`
-- `get_related_blog_posts(post, limit)`
-- `get_latest_blog_posts(limit)`
-- `get_published_blog_slugs()`
+- `get_related_blog_posts()`
+- `get_latest_blog_posts()`
 
-Phase 10 can replace repository internals with MongoDB without redesigning Blog UI.
+Admin uses `lib/blog/admin_repository.js`.
 
 ---
 
-## Post fields (snake_case)
+## Migration
 
-`slug`, `status`, `featured`, `title`, `meta_title`, `meta_description`, `excerpt`, `category`, `tags`, `published_at`, `updated_at`, `author_name`, `hero_image`, `hero_image_alt`, `hero_placeholder`, `content`, `related_services`, `related_industries`, `related_slugs`
+```bash
+npm run migrate-blog
+```
 
-### Status
+Idempotent upsert by `slug`. Preserves titles, content, SEO fields, related links, featured flag, and `published_at` (`2026-08-22` for initial articles).
 
-- `published` → public hub, static params, sitemap, schema
-- `draft` → excluded from all public surfaces; unknown/draft slug → `notFound()`
+---
+
+## Draft / published
+
+- Public surfaces: **published only**
+- Drafts: Admin list/edit/preview only — no sitemap, no BlogPosting, no hub/homepage
+
+Published slug editing is locked.
+
+---
+
+## Caching / revalidation
+
+Public Blog pages are runtime-dynamic (`force-dynamic`) so `npm run build` does not require MongoDB.
+
+Admin mutations call `revalidatePath` for:
+
+- `/`
+- `/blog/`
+- `/blog/{slug}/`
+- `/sitemap.xml`
 
 ---
 
 ## Content blocks
 
-Rendered by `BlogArticleContent`:
+Unchanged from Phase 9:
 
-- `paragraph`
-- `rich_paragraph` (text + internal links)
-- `heading` (level 2/3 + `id`)
-- `unordered_list`
-- `ordered_list`
-- `callout`
+paragraph, rich_paragraph, heading (h2/h3), unordered_list, ordered_list, callout
 
-No `dangerouslySetInnerHTML` for article bodies.
+Admin block editor writes the same structure.
 
 ---
 
 ## SEO ownership
 
-| Surface | Intent |
-|---|---|
-| Service pages | Commercial service queries |
-| Industry pages | Commercial vertical queries |
-| Blog articles | Informational / decision-stage queries |
-
-Articles must support money pages via contextual internal links — not replace them.
+Blog = informational intent.  
+Services / Industries retain commercial ownership.
 
 ---
 
-## Structured data
+## Phase 8
 
-- Hub: `CollectionPage` + `BreadcrumbList`
-- Article: `BlogPosting` (Organization author/publisher) + `BreadcrumbList`
-- No fake images in schema when assets are placeholders only
-- No FAQ schema on initial articles
+Work / Portfolio remains deferred.
 
----
-
-## Sitemap
-
-Includes:
-
-- `/blog/`
-- each published article
-
-Excludes drafts, categories, tags, RSS (if added later), admin.
-
----
-
-## Categories / tags
-
-- Categories are labels only in Phase 9
-- No `/blog/category/...` routes
-- Tags exist for relatedness; no public tag pages
-
----
-
-## Intentionally not built
-
-- Search
-- Pagination UI
-- Newsletter
-- Comments
-- RSS (deferred for simplicity)
-- Fake popularity metrics
-- Rich text editor packages
-
----
-
-## Future image paths (assets not shipped yet)
-
-- `/public/images/blog/custom-software-vs-off-the-shelf.webp`
-- `/public/images/blog/client-portal.webp`
-- `/public/images/blog/business-process-automation.webp`
-
-Current UI uses professional placeholders.
-
----
-
-## Phase 10 migration notes (document only)
-
-Possible future `blog_posts` MongoDB mapping mirrors Phase 9 fields (`snake_case`).
-
-Phase 10 may add:
-
-- Admin authentication
-- Create/edit/publish workflow
-- Contact submissions viewer
-- Optional preview for drafts
-
-Do **not** implement Phase 10 in this phase.
+See also: `docs/admin_cms_architecture.md`

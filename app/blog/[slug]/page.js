@@ -3,7 +3,6 @@ import { BlogArticleView } from "@/components/blog/BlogArticleView";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   get_blog_post_by_slug,
-  get_published_blog_slugs,
   get_related_blog_posts,
 } from "@/lib/blog/repository";
 import { create_page_metadata } from "@/lib/seo/metadata";
@@ -12,13 +11,11 @@ import {
   get_blog_posting_schema,
 } from "@/lib/seo/blog_structured_data";
 
-export function generateStaticParams() {
-  return get_published_blog_slugs().map((slug) => ({ slug }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const post = get_blog_post_by_slug(slug);
+  const post = await get_blog_post_by_slug(slug);
 
   if (!post) {
     return {};
@@ -34,13 +31,13 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogArticlePage({ params }) {
   const { slug } = await params;
-  const post = get_blog_post_by_slug(slug);
+  const post = await get_blog_post_by_slug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const related_posts = get_related_blog_posts(post, 3);
+  const related_posts = await get_related_blog_posts(post, 3);
   const posting_schema = get_blog_posting_schema(post);
   const breadcrumb_schema = get_blog_breadcrumb_schema([
     { label: "Home", href: "/" },

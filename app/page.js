@@ -11,6 +11,8 @@ import { HomeWhatWeBuild } from "@/components/sections/home/HomeWhatWeBuild";
 import { final_cta, homepage_seo } from "@/config/homepage_content";
 import { create_page_metadata } from "@/lib/seo/metadata";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = create_page_metadata({
   title: homepage_seo.title,
   description: homepage_seo.description,
@@ -19,7 +21,7 @@ export const metadata = create_page_metadata({
   open_graph_type: "website",
 });
 
-export default function HomePage() {
+export default async function HomePage() {
   return (
     <>
       <HomeHero />

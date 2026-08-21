@@ -6,8 +6,8 @@ import { SectionHeader } from "@/components/sections/home/SectionHeader";
 import { format_blog_date } from "@/lib/blog/helpers";
 import { get_latest_blog_posts } from "@/lib/blog/repository";
 
-export function HomeInsights() {
-  const posts = get_latest_blog_posts(3);
+export async function HomeInsights() {
+  const posts = await get_latest_blog_posts(3);
 
   return (
     <section className="ds-section bg-background-deep border-b border-border">
