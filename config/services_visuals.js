@@ -67,10 +67,14 @@ export const service_visuals = {
   },
   "ui-ux-design": {
     primary: {
+      src: "/images/services/ui-ux-design/product-design.webp",
       filename: "/public/images/services/ui-ux-design/product-design.webp",
+      width: 1400,
+      height: 1000,
       dimensions: "1400 × 1000",
       aspect_ratio: "7:5",
       aspect_class: "aspect-[7/5]",
+      alt: "UI/UX product design workspace with wireframes and polished interface screens",
       purpose:
         "UI/UX design workspace showing wireframes, polished screens, and design-system elements.",
       placement: "Full-width section visual",
