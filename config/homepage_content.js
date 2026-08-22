@@ -5,12 +5,12 @@ export const homepage_seo = {
 };
 
 export const hero = {
-  eyebrow: "Technology partner for US businesses",
-  h1: "Softabyte Labs — software, product, and infrastructure for ambitious US businesses",
+  eyebrow: "Software • Product • Automation",
+  h1: "Custom software and digital products for US businesses",
   description:
-    "We design and build custom software, web and mobile products, and practical AI automation — connected delivery for teams that need reliable digital systems.",
+    "We design and build web, mobile, and automation solutions that solve real business problems.",
   primary_cta: { label: "Start a Project", href: "/contact/" },
-  secondary_cta: { label: "Explore Services", href: "/services/" },
+  secondary_cta: { label: "Explore our services", href: "/services/" },
   image: {
     filename: "/images/home/hero-visual.webp",
     dimensions: "1448 × 1086",

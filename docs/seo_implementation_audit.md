@@ -35,7 +35,7 @@ Related strategy documents: `seo_strategy.md`, `technical_seo_requirements.md`, 
 | WebSite JSON-LD | **PASS** | Same | name + url only; no SearchAction |
 | Service/FAQ/Review schema | **NOT APPLICABLE YET** | — | Deferred per `technical_seo_requirements.md` |
 | Homepage single H1 | **PASS** | `components/sections/home/HomeHero.js` | One H1 only |
-| Homepage H1 vs keyword map | **ALIGNED** | `keyword_map.md` line 34 | No change required |
+| Homepage H1 vs keyword map | **ALIGNED** | Updated H1 in `config/homepage_content.js` (Phase 11 hero refinement) |
 | Semantic HTML shell | **PASS** | `app/layout.js`, sections | header, nav, main, section, footer |
 | Internal linking (header/footer/home) | **PASS** | `config/navigation.js`, homepage sections | Crawlable links with trailing slashes |
 | Future nav URLs (404 today) | **NEEDS IMPROVEMENT** | Header/footer | Intentional architecture links; excluded from sitemap |

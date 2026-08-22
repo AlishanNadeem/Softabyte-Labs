@@ -717,6 +717,159 @@ a:hover .ds-arrow-shift {
   position: relative;
 }
 
+/* Homepage hero — premium editorial composition (Phase 11 refinement) */
+.ds-home-hero-h1 {
+  font-family: var(--font-family-heading);
+  font-size: clamp(2.35rem, 10vw, 3.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  max-width: 11.5em;
+}
+
+@media (min-width: 1024px) {
+  .ds-home-hero-h1 {
+    font-size: clamp(2.9rem, 4vw, 4.2rem);
+    line-height: 1.02;
+    max-width: 12.5em;
+  }
+}
+
+.ds-home-hero-desc {
+  font-family: var(--font-family-body);
+  font-size: clamp(1.0625rem, 1.35vw, 1.1875rem);
+  line-height: 1.62;
+  font-weight: 400;
+  max-width: 35.625rem;
+}
+
+.ds-home-hero-visual {
+  position: relative;
+}
+
+.ds-home-hero-visual__surface {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--background-secondary);
+  box-shadow:
+    0 28px 56px -32px rgba(0, 0, 0, 0.82),
+    0 12px 24px -16px rgba(0, 0, 0, 0.55);
+}
+
+.ds-home-hero-visual__accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 3.5rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--brand-primary) 0%,
+    rgba(12, 192, 223, 0.15) 100%
+  );
+  pointer-events: none;
+}
+
+.ds-home-hero-visual__accent::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 2.5rem;
+  background: linear-gradient(
+    180deg,
+    var(--brand-primary) 0%,
+    rgba(255, 222, 89, 0.35) 55%,
+    transparent 100%
+  );
+}
+
+.ds-home-hero-visual__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ds-home-hero-visual__float {
+  position: absolute;
+  right: -0.5rem;
+  bottom: 1.25rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  width: min(11.5rem, 42vw);
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(13, 16, 18, 0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 16px 32px -20px rgba(0, 0, 0, 0.75);
+}
+
+.ds-home-hero-visual__float-label {
+  font-family: var(--font-family-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ds-home-hero-visual__float-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.ds-home-hero-visual__float-bars span {
+  display: block;
+  height: 0.25rem;
+  border-radius: 999px;
+  background: var(--border-strong);
+}
+
+.ds-home-hero-visual__float-bars span:nth-child(1) {
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--brand-primary-soft) 0%,
+    var(--brand-primary-border) 100%
+  );
+}
+
+.ds-home-hero-visual__float-bars span:nth-child(2) {
+  width: 72%;
+}
+
+.ds-home-hero-visual__float-bars span:nth-child(3) {
+  width: 48%;
+}
+
+@media (max-width: 1023px) {
+  .ds-home-hero-visual__float {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: min(10rem, 38vw);
+    padding: 0.625rem 0.75rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .ds-home-hero-visual__float {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-home-hero-visual__float {
+    backdrop-filter: none;
+  }
+}
+
 /* Service image placeholders */
 .ds-image-placeholder {
   position: relative;

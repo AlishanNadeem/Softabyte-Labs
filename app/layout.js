@@ -1,8 +1,8 @@
 import "./globals.css";
-import Script from "next/script";
 import { font_variables, poppins } from "@/lib/fonts";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { JsFlag } from "@/components/ui/JsFlag";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { get_sitewide_structured_data } from "@/lib/seo/structured_data";
@@ -32,9 +32,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${poppins.className} bg-background-primary text-text-primary min-h-screen flex flex-col`}
       >
-        <Script id="ds-js-flag" strategy="beforeInteractive">
-          {`document.documentElement.classList.add("js");`}
-        </Script>
+        <JsFlag />
         <JsonLd data={get_sitewide_structured_data()} />
         <Header />
         <main className="flex-1">{children}</main>

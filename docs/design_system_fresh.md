@@ -479,19 +479,20 @@ Mobile-first. Verified at: 320, 375, 390, 414, 768, 1024, 1280, 1440, 1920.
 
 ### Homepage hero
 
-- Background: dark graphite with structured cyan primary light + faint yellow secondary (`.ds-hero-bg`); technical grid on desktop, reduced on mobile
-- Layout: ~54% content / ~46% visual on desktop (`lg:grid-cols-[54fr_46fr]`)
-- Mobile order: eyebrow → H1 → copy → CTAs → image
+- Background: dark graphite with structured cyan primary light + faint yellow secondary (`.ds-hero-bg`); existing BackgroundBlur assets unchanged
+- Layout: ~51% content / ~45% visual on desktop; gap 64–80px at large breakpoints
+- Mobile order: eyebrow → H1 → copy → primary CTA → secondary text link → visual
 - Hero image: `/public/images/home/hero-visual.webp` (1448 × 1086, ~4:3)
 - `next/image` with `priority`, responsive `sizes`, accurate width/height for CLS
-- Frame: selective gradient border (`.ds-gradient-border`), 6px radius, restrained shadow, `.ds-frame-accent` corner detail, optional `.ds-image-zoom` on hover
-- No placeholder boxes, floating labels, or fake statistics
-- H1 is frozen per `keyword_map.md` — do not change without SEO approval
+- Visual: integrated surface (`.ds-home-hero-visual__surface`) — subtle shadow, thin corner accent only; no full gradient border frame
+- Optional decorative float card (abstract interface bars, no metrics) — hidden on very small mobile
+- H1: `Custom software and digital products for US businesses` — brand in header/logo, not repeated in H1 (updated Phase 11 hero refinement)
+- Eyebrow: `Software • Product • Automation`
 
 ### Hero CTAs
 
-- Primary: **Start a Project** → `/contact/` (brand gradient button)
-- Secondary: **Explore Services** → `/services/` (truthful while `/work/` has no published case studies)
+- Primary: **Start a Project** → `/contact/` (brand gradient button, ~52px height)
+- Secondary: **Explore our services** → `/services/` (text link, not a second heavy button)
 
 ### Capability strip
 

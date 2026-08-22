@@ -31,7 +31,7 @@ Character guidance: titles ~50–60 characters where possible; metas ~140–160.
 | Audience | Founders, CEOs, CTOs, product and operations leaders |
 | Business goal | Position as a US-focused technology partner for US businesses |
 | Conversion goal | Discovery call |
-| H1 (natural copy) | Softabyte Labs — software, product, and infrastructure for ambitious US businesses |
+| H1 (natural copy) | Custom software and digital products for US businesses |
 | Title tag | Softabyte Labs \| Custom Software, Web, Mobile & AI |
 | Meta description | Softabyte Labs is a US-focused technology partner for custom software, web and mobile products, AI automation, UI/UX, and application hosting. |
 | Related services | All six |

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { TextLink } from "@/components/ui/TextLink";
 import { BackgroundBlur } from "@/components/ui/BackgroundBlur";
 import { hero } from "@/config/homepage_content";
 
@@ -28,59 +29,76 @@ export function HomeHero() {
         opacity={0.2}
         mobile="hide"
       />
-      <div className="ds-container relative z-[1] py-12 md:py-16 lg:py-20 xl:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,54fr)_minmax(0,46fr)] gap-10 lg:gap-12 xl:gap-14 items-center">
-          <div className="space-y-5 md:space-y-6 order-1">
+      <div className="ds-container relative z-[1] py-14 md:py-16 lg:py-[4.75rem] xl:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,51fr)_minmax(0,45fr)] gap-10 md:gap-12 lg:gap-16 xl:gap-20 items-center">
+          <div className="order-1 max-w-xl lg:max-w-none">
             <p
-              className="ds-eyebrow text-brand-primary ds-hero-entrance"
+              className="ds-eyebrow text-brand-primary ds-hero-entrance mb-5 md:mb-6"
               style={{ "--hero-delay": "0ms" }}
             >
               {hero.eyebrow}
             </p>
-            <span
-              className="ds-accent-line block ds-hero-entrance"
-              style={{ "--hero-delay": "40ms" }}
-              aria-hidden="true"
-            />
             <h1
-              className="ds-h1 text-text-primary max-w-xl ds-hero-entrance"
+              className="ds-home-hero-h1 text-text-primary ds-hero-entrance mb-5 md:mb-6"
               style={{ "--hero-delay": "60ms" }}
             >
               {hero.h1}
             </h1>
             <p
-              className="ds-body-large text-text-secondary max-w-lg ds-hero-entrance"
+              className="ds-home-hero-desc text-text-secondary ds-hero-entrance mb-7 md:mb-8"
               style={{ "--hero-delay": "120ms" }}
             >
               {hero.description}
             </p>
             <div
-              className="flex flex-wrap gap-3 pt-1 ds-hero-entrance"
+              className="flex flex-col items-start gap-4 sm:gap-5 ds-hero-entrance"
               style={{ "--hero-delay": "180ms" }}
             >
-              <Button href={hero.primary_cta.href} variant="primary">
+              <Button
+                href={hero.primary_cta.href}
+                variant="primary"
+                className="min-h-[3.125rem] h-[3.25rem] px-6 text-[0.9375rem]"
+              >
                 {hero.primary_cta.label}
-                <ArrowUpRight size={16} strokeWidth={1.75} aria-hidden="true" />
+                <ArrowUpRight size={17} strokeWidth={1.75} aria-hidden="true" />
               </Button>
-              <Button href={hero.secondary_cta.href} variant="secondary">
+              <TextLink
+                href={hero.secondary_cta.href}
+                className="min-h-11 text-[0.9375rem]"
+              >
                 {hero.secondary_cta.label}
-              </Button>
+              </TextLink>
             </div>
           </div>
+
           <figure
-            className="group ds-hero-image-frame ds-frame-accent m-0 order-2 ds-hero-entrance ds-hero-entrance--scale"
+            className="ds-home-hero-visual m-0 order-2 w-full max-w-[36rem] lg:max-w-[38.75rem] mx-auto lg:mx-0 lg:justify-self-end ds-hero-entrance ds-hero-entrance--scale"
             style={{ "--hero-delay": "200ms" }}
           >
-            <div className="relative overflow-hidden rounded-md ds-gradient-border shadow-[0_24px_48px_-24px_rgba(0,0,0,0.75)]">
+            <div className="ds-home-hero-visual__surface">
+              <span
+                className="ds-home-hero-visual__accent"
+                aria-hidden="true"
+              />
               <Image
                 src="/images/home/hero-visual.webp"
                 alt={hero.image.alt}
                 width={hero_image_width}
                 height={hero_image_height}
-                sizes="(max-width: 1024px) 100vw, 46vw"
+                sizes="(max-width: 1024px) min(100vw, 36rem), 38.75rem"
                 priority
-                className="w-full h-auto ds-image-zoom"
+                className="w-full h-auto ds-home-hero-visual__image"
               />
+            </div>
+            <div className="ds-home-hero-visual__float" aria-hidden="true">
+              <span className="ds-home-hero-visual__float-label">
+                Product interface
+              </span>
+              <div className="ds-home-hero-visual__float-bars">
+                <span />
+                <span />
+                <span />
+              </div>
             </div>
           </figure>
         </div>

@@ -48,7 +48,7 @@ A page may carry a secondary intent, but every row below states one **primary** 
 | `/contact/` | Conversion | Start a project | contact Softabyte Labs | Transactional | — | Live |
 | `/privacy-policy/`, `/terms/` | Legal | Compliance | none (not keyword-targeted) | — | — | Live |
 
-All titles/H1s above were verified directly against `config/services_content.js` and `config/industries_content.js` and match `docs/keyword_map.md`. **No changes were made or are recommended to any money-page metadata, H1, or canonical in Phase 11.**
+All service/industry titles/H1s above were verified directly against `config/services_content.js` and `config/industries_content.js` and match `docs/keyword_map.md`. Homepage H1 lives in `config/homepage_content.js` (`Custom software and digital products for US businesses` as of the Phase 11 hero refinement). **No changes were made or are recommended to any service/industry money-page metadata, H1, or canonical.**
 
 ---
 
