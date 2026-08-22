@@ -10,6 +10,7 @@ import {
 } from "@/components/sections/services/ContentBlocks";
 import { FAQSection } from "@/components/sections/services/FAQSection";
 import { RelatedServices } from "@/components/sections/services/RelatedServices";
+import { RelatedInsights } from "@/components/sections/shared/RelatedInsights";
 import { ServiceHero } from "@/components/sections/services/ServiceHero";
 import { ServiceSection } from "@/components/sections/services/ServiceSection";
 import { TechnologyWeUse } from "@/components/sections/services/TechnologyWeUse";
@@ -23,6 +24,7 @@ import {
   technology_section_copy,
 } from "@/config/services_technology";
 import { service_visuals } from "@/config/services_visuals";
+import { get_related_insights } from "@/config/related_insights_links";
 import {
   blur_preset_primary,
   service_hero_blurs,
@@ -159,6 +161,11 @@ export function ServicePage({ content }) {
             slugs={content.related_services}
             {...content.related_copy}
           />
+        </ServiceSection>
+      )}
+      {get_related_insights(content.path).length > 0 && (
+        <ServiceSection theme="secondary">
+          <RelatedInsights path={content.path} />
         </ServiceSection>
       )}
       <GlobalCTA

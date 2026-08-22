@@ -327,3 +327,9 @@ Full research: `industry_seo_research.md`. Do not build pages until Phase 5B.
 | software development process (branded process POV) | `/process/` |
 
 Full page-level mapping: `keyword_map.md`.
+
+---
+
+## Implementation note — Phase 11 (August 22, 2026)
+
+This document remains the Phase 0 strategic record. Phase 11 added `docs/seo_content_backlog.md` (36 prioritized blog topics), `docs/seo_content_clusters.md`, and `docs/seo_keyword_ownership.md` as the working content-growth system built on top of this strategy. Healthcare's "defer publish until trust assets" guidance above is still open — see `docs/seo_keyword_ownership.md` §5 for the current live-indexation status and why it was not changed in this phase.

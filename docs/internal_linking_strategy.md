@@ -224,3 +224,20 @@ When components are built, create a small set of reusable modules:
 - Industry use case
 
 Do not hardcode contradictory links in each page independently without a map. This document is that map.
+
+---
+
+## 11. Implementation note — Phase 11 selective inbound links (August 22, 2026)
+
+By Phase 10, service/industry pages had no outbound links to the 3 published Blog articles — the gap this document's §4/§7 anticipated. Phase 11 closed it with a small reusable `RelatedInsights` Server Component (`components/sections/shared/RelatedInsights.js`) and a static, code-managed link config (`config/related_insights_links.js`), wired into:
+
+| Page | Linked article(s) |
+|---|---|
+| `/services/custom-software-development/` | Custom Software vs. Off-the-Shelf; When Business Needs a Client Portal |
+| `/services/web-development/` | When Business Needs a Client Portal |
+| `/services/ai-automation/` | How to Identify Business Processes Worth Automating |
+| `/industries/professional-services/` | When Business Needs a Client Portal |
+
+This is intentionally selective (per §9, "what not to do" — no link dump). Only genuinely relevant pairings were added; the other 8 service/industry pages do not yet have a matching published article and were left unchanged. As the Phase 11 backlog (`seo_content_backlog.md`) is published over time, add entries to `related_insights_links.js` following the same relevance standard — do not add a link merely because an article exists.
+
+The component queries only static configuration (no MongoDB call from service/industry pages), preserving their static/server-rendered build-safety.

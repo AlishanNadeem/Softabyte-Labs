@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { BlogBlockEditor } from "@/components/admin/BlogBlockEditor";
 import {
+  check_primary_keyword_conflict_action,
   delete_blog_action,
   publish_blog_action,
   save_blog_draft_action,
@@ -16,6 +17,11 @@ import {
 } from "@/config/navigation";
 import { slugify_blog_title } from "@/lib/blog/helpers";
 import { BLOG_STATUS_PUBLISHED } from "@/lib/admin/constants";
+import {
+  CONTENT_CLUSTER_OPTIONS,
+  SEARCH_INTENT_OPTIONS,
+  find_commercial_owner_overlap,
+} from "@/lib/seo/content_planning";
 
 function tags_to_string(tags) {
   if (Array.isArray(tags)) return tags.join(", ");
@@ -48,6 +54,11 @@ function initial_state(post) {
     content: Array.isArray(post?.content) ? post.content : [],
     related_service_hrefs: hrefs_from_related(post?.related_services),
     related_industry_hrefs: hrefs_from_related(post?.related_industries),
+    primary_keyword: post?.primary_keyword || "",
+    search_intent: post?.search_intent || "",
+    content_cluster: post?.content_cluster || "",
+    target_service: post?.target_service || "",
+    target_industry: post?.target_industry || "",
   };
 }
 
@@ -57,6 +68,8 @@ export function BlogPostForm({ post = null, mode = "create" }) {
   const [errors, set_errors] = useState({});
   const [form_message, set_form_message] = useState("");
   const [is_pending, set_is_pending] = useState(false);
+  const [keyword_conflicts, set_keyword_conflicts] = useState(null);
+  const [checking_keyword, set_checking_keyword] = useState(false);
 
   const post_id = post?.id || null;
   const status = post?.status || "draft";
@@ -66,6 +79,29 @@ export function BlogPostForm({ post = null, mode = "create" }) {
 
   const meta_title_count = form.meta_title.length;
   const meta_description_count = form.meta_description.length;
+
+  const commercial_owner_overlap = useMemo(
+    () => find_commercial_owner_overlap(form.primary_keyword),
+    [form.primary_keyword]
+  );
+
+  async function handle_check_keyword_conflict() {
+    const value = form.primary_keyword.trim();
+    if (!value) return;
+    set_checking_keyword(true);
+    set_keyword_conflicts(null);
+    try {
+      const result = await check_primary_keyword_conflict_action(
+        value,
+        post_id
+      );
+      set_keyword_conflicts(result?.matches || []);
+    } catch (error) {
+      set_keyword_conflicts([]);
+    } finally {
+      set_checking_keyword(false);
+    }
+  }
 
   const page_title = useMemo(() => {
     if (mode === "edit") return "Edit blog post";
@@ -129,6 +165,11 @@ export function BlogPostForm({ post = null, mode = "create" }) {
       related_slugs: Array.isArray(post?.related_slugs)
         ? post.related_slugs
         : [],
+      primary_keyword: form.primary_keyword,
+      search_intent: form.search_intent,
+      content_cluster: form.content_cluster,
+      target_service: form.target_service,
+      target_industry: form.target_industry,
     };
   }
 
@@ -430,6 +471,170 @@ export function BlogPostForm({ post = null, mode = "create" }) {
             </label>
           </div>
         </div>
+
+        <fieldset className="space-y-4 border-t border-border pt-5">
+          <div>
+            <legend className="text-sm font-medium text-text-primary">
+              SEO planning (internal only)
+            </legend>
+            <p className="mt-1 text-xs text-text-muted">
+              Editorial planning fields for the content team. Never shown
+              publicly, never included in page metadata.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="space-y-2 sm:col-span-2">
+              <label
+                htmlFor="blog-primary-keyword"
+                className="text-sm font-medium"
+              >
+                Primary keyword / theme
+              </label>
+              <div className="flex flex-wrap items-start gap-2">
+                <input
+                  id="blog-primary-keyword"
+                  className="ds-input w-full sm:max-w-sm"
+                  value={form.primary_keyword}
+                  onChange={(event) =>
+                    update_field("primary_keyword", event.target.value)
+                  }
+                  disabled={is_pending}
+                />
+                <button
+                  type="button"
+                  className="ds-btn ds-btn--secondary inline-flex min-h-9 items-center rounded-md border border-border px-3 text-xs"
+                  onClick={handle_check_keyword_conflict}
+                  disabled={is_pending || checking_keyword || !form.primary_keyword.trim()}
+                >
+                  {checking_keyword ? "Checking…" : "Check for conflicts"}
+                </button>
+              </div>
+              {keyword_conflicts && keyword_conflicts.length > 0 ? (
+                <p className="text-xs text-text-muted" role="status">
+                  Already used by: {" "}
+                  {keyword_conflicts
+                    .map((item) => `${item.title || item.slug} (${item.status})`)
+                    .join(", ")}
+                </p>
+              ) : null}
+              {keyword_conflicts && keyword_conflicts.length === 0 ? (
+                <p className="text-xs text-text-muted" role="status">
+                  No other post uses this exact primary keyword.
+                </p>
+              ) : null}
+              {commercial_owner_overlap.length > 0 ? (
+                <p className="text-xs text-text-muted" role="status">
+                  Note: this theme is close to the commercial primary of{" "}
+                  {commercial_owner_overlap
+                    .map((owner) => owner.label)
+                    .join(", ")}
+                  . Consider a differentiated angle before drafting.
+                </p>
+              ) : null}
+            </div>
+
+            <div className="space-y-2">
+              <label
+                htmlFor="blog-search-intent"
+                className="text-sm font-medium"
+              >
+                Search intent
+              </label>
+              <select
+                id="blog-search-intent"
+                className="ds-input w-full"
+                value={form.search_intent}
+                onChange={(event) =>
+                  update_field("search_intent", event.target.value)
+                }
+                disabled={is_pending}
+              >
+                <option value="">Not set</option>
+                {SEARCH_INTENT_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label
+                htmlFor="blog-content-cluster"
+                className="text-sm font-medium"
+              >
+                Content cluster
+              </label>
+              <select
+                id="blog-content-cluster"
+                className="ds-input w-full"
+                value={form.content_cluster}
+                onChange={(event) =>
+                  update_field("content_cluster", event.target.value)
+                }
+                disabled={is_pending}
+              >
+                <option value="">Not set</option>
+                {CONTENT_CLUSTER_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label
+                htmlFor="blog-target-service"
+                className="text-sm font-medium"
+              >
+                Target service (planning)
+              </label>
+              <select
+                id="blog-target-service"
+                className="ds-input w-full"
+                value={form.target_service}
+                onChange={(event) =>
+                  update_field("target_service", event.target.value)
+                }
+                disabled={is_pending}
+              >
+                <option value="">None</option>
+                {service_navigation.map((service) => (
+                  <option key={service.href} value={service.href}>
+                    {service.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="space-y-2">
+              <label
+                htmlFor="blog-target-industry"
+                className="text-sm font-medium"
+              >
+                Target industry (planning)
+              </label>
+              <select
+                id="blog-target-industry"
+                className="ds-input w-full"
+                value={form.target_industry}
+                onChange={(event) =>
+                  update_field("target_industry", event.target.value)
+                }
+                disabled={is_pending}
+              >
+                <option value="">None</option>
+                {industry_navigation.map((industry) => (
+                  <option key={industry.href} value={industry.href}>
+                    {industry.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </fieldset>
 
         <fieldset className="space-y-3 border-t border-border pt-5">
           <legend className="text-sm font-medium text-text-primary">

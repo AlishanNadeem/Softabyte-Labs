@@ -81,6 +81,14 @@ Admin block editor writes the same structure.
 Blog = informational intent.  
 Services / Industries retain commercial ownership.
 
+Phase 11 formalized this into a documented system: `docs/seo_keyword_ownership.md`, `docs/seo_cannibalization_audit.md`, `docs/seo_content_clusters.md`, `docs/seo_content_backlog.md`, `docs/seo_content_brief_template.md`, and `docs/seo_content_workflow.md`.
+
+---
+
+## Phase 11 — admin-only planning fields
+
+Five optional fields (`primary_keyword`, `search_intent`, `content_cluster`, `target_service`, `target_industry`) support editorial planning in the Admin Blog CMS. They are stored on `blog_posts` documents but are **never** part of the public serializer, public repository, sitemap, or `BlogPosting` schema — see `docs/admin_cms_architecture.md` for the exact serialization boundary. Existing posts default to `null` for all five; no migration was required.
+
 ---
 
 ## Phase 8

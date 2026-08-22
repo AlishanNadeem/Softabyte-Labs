@@ -342,3 +342,9 @@ Avoid doorway-page architecture:
 
 See `keyword_map.md` and `industry_seo_research.md` for full keyword ownership, cannibalization guardrails, and publication order.
 
+---
+
+## Implementation note — Phase 11 (August 22, 2026)
+
+This document remains the Phase 0 strategic record. Phase 11 added industry-specific blog cluster planning in `docs/seo_content_clusters.md` (§7-12) and `docs/seo_content_backlog.md`. Healthcare content in the backlog is intentionally conservative (no compliance/clinical claims, legal review required before publishing) and does not include any P1 topic.
+

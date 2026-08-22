@@ -275,7 +275,7 @@ Articles target decision-stage queries. Commercial ownership remains on service/
 | Requirement | Status | Evidence |
 |---|---|---|
 | Admin auth (bcrypt + hashed sessions) | **PASS** | `lib/admin/*`, cookie HttpOnly |
-| Admin noindex + robots disallow | **PASS** | layouts, middleware, `robots.js` |
+| Admin noindex + robots disallow | **PASS** | layouts, proxy, `robots.js` |
 | `blog_posts` MongoDB source | **PASS** | public repository + admin CMS |
 | Existing 3 URLs/dates preserved via migration | **PASS** | `npm run migrate-blog` |
 | Structured block editor | **PASS** | `BlogBlockEditor` |
@@ -285,3 +285,32 @@ Articles target decision-stage queries. Commercial ownership remains on service/
 | Build without live MongoDB requirement | **PASS** | dynamic Blog routes; empty fallback |
 | No Phase 8 / newsletter / analytics | **PASS** | scope restrained |
 | Docs | **PASS** | `docs/admin_cms_architecture.md` |
+
+---
+
+## 18. Phase 11 — SEO Content System + Content Growth Architecture (August 22, 2026)
+
+| Requirement | Status | Evidence |
+|---|---|---|
+| Canonical keyword ownership audit | **PASS** | `docs/seo_keyword_ownership.md` — verified against live `config/*_content.js` |
+| Cannibalization audit (live + planned) | **PASS** | `docs/seo_cannibalization_audit.md` — no High/Medium conflicts found |
+| 12 content clusters documented | **PASS** | `docs/seo_content_clusters.md` |
+| 36-topic backlog (10 P1 / 16 P2 / 10 P3) | **PASS** | `docs/seo_content_backlog.md` |
+| Brief template + workflow | **PASS** | `docs/seo_content_brief_template.md`, `docs/seo_content_workflow.md` |
+| 90-day publishing target (planning only, no automation) | **PASS** | `docs/seo_90_day_content_plan.md` |
+| No content mass-published in this phase | **PASS** | 0 new Blog posts created; system/governance only |
+| Admin-only SEO planning fields (5) | **PASS** | `lib/blog/validation.js`, `lib/blog/db.js`, `lib/blog/admin_repository.js`, `components/admin/BlogPostForm.js` |
+| Planning fields excluded from public repository/serializer | **PASS** | `serialize_blog_post()` remains an explicit allowlist; verified via repo-wide search — no match outside `lib/blog/*`, `lib/admin/actions.js`, `lib/seo/content_planning.js`, `components/admin/BlogPostForm.js` |
+| Non-blocking keyword-conflict + commercial-owner overlap checks | **PASS** | `check_primary_keyword_conflict_action()`, `find_commercial_owner_overlap()` — never block draft/publish |
+| Existing posts remain valid (no migration required) | **PASS** | Planning fields default to `null`; no schema migration or new index |
+| Selective `RelatedInsights` inbound links added | **PASS** | `config/related_insights_links.js`, `components/sections/shared/RelatedInsights.js` — 4 pages linked, no MongoDB query from static pages |
+| Stale/unsupported copy corrected | **PASS** | Services hub "when published" wording (Process/Industries are live); footer "US-based" → "US-focused" in `config/navigation.js` |
+| No money-page H1/metadata/canonical changed | **PASS** | Verified unchanged in `config/services_content.js`, `config/industries_content.js` |
+| No new URLs, routes, or Phase 8/12 systems | **PASS** | Scope restrained to docs + admin fields + static links |
+| Healthcare indexation left unresolved (documented, not changed) | **PASS** | `docs/seo_keyword_ownership.md` §5 — open item for a separately-scoped decision |
+| Build without external service requirement | **PASS** | `npm run build` — see result below |
+| Lint | **PASS** | `npm run lint` — see result below |
+
+### Sitemap URL count (Phase 11)
+
+Unchanged at the route level — Phase 11 added no new public routes. Blog post count depends on live `blog_posts` data at request time (dynamic sitemap since Phase 10), currently the 3 published articles migrated in Phase 10.

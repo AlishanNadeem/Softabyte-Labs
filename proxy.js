@@ -5,7 +5,7 @@ import { ADMIN_SESSION_COOKIE } from "@/lib/admin/constants";
  * Lightweight edge gate: require session cookie presence for /admin/*
  * except login. Full session validation happens in server layouts/actions.
  */
-export function middleware(request) {
+export function proxy(request) {
   const { pathname } = request.nextUrl;
 
   if (!pathname.startsWith("/admin")) {

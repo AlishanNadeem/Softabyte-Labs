@@ -229,3 +229,12 @@ Phase 9 used a **local JavaScript repository** for public frontend + SEO.
 - Create admins with `npm run create-admin`
 
 **Phase 8 / Work remains deferred.** Do not publish `/work/` or fake case studies.
+
+## 11. Implementation note — Phase 11 SEO Content System (August 22, 2026)
+
+- No new public routes. Governance/documentation system: `docs/seo_keyword_ownership.md`, `docs/seo_cannibalization_audit.md`, `docs/seo_content_clusters.md`, `docs/seo_content_backlog.md`, `docs/seo_content_brief_template.md`, `docs/seo_content_workflow.md`, `docs/seo_90_day_content_plan.md`.
+- Admin Blog CMS gained 5 optional, admin-only editorial planning fields (never public) — see `docs/admin_cms_architecture.md`.
+- Added selective `RelatedInsights` inbound links from 4 service/industry pages to existing Blog articles (`components/sections/shared/RelatedInsights.js`, `config/related_insights_links.js`) — no MongoDB dependency, no new routes.
+- Corrected stale copy: services hub no longer implies Process/Industries are unpublished; footer statement changed from unsupported "US-based" to "US-focused" claim.
+
+**Phase 8 / Work remains deferred. Phase 12 was not started.**

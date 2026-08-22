@@ -108,4 +108,4 @@ export const footer_legal = [
 ];
 
 export const footer_statement =
-  "US-based software development partner for custom products, web platforms, and digital systems.";
+  "US-focused software development partner for custom products, web platforms, and digital systems.";

@@ -274,3 +274,18 @@ Static marketing pages remain code-managed. The admin panel exists so SEO-optimi
 Blog records use the fields defined in `dynamic_vs_static_architecture.md` (`title`, `slug`, `excerpt`, `content`, SEO fields, `status`, `published_at`, etc.), all `snake_case`.
 
 Public blog posts must be quality-gated and indexable **only when published**.
+
+---
+
+## 8. Implementation note — Phase 11 SEO Content System (August 22, 2026)
+
+This document remains the Phase 0 strategic record and is not rewritten. As of Phase 11, the working system built on top of it lives in:
+
+- `docs/seo_keyword_ownership.md` — canonical, verified-against-code keyword ownership (supersedes this file for "what is live today" questions)
+- `docs/seo_cannibalization_audit.md` — live and planned overlap review
+- `docs/seo_content_clusters.md` — the 12 clusters (6 service + 6 industry), each pointing to its pillar
+- `docs/seo_content_backlog.md` — 36 prioritized backlog topics (10 P1 / 16 P2 / 10 P3), superseding the illustrative topic tables in §4-5 above as the actionable backlog
+- `docs/seo_content_brief_template.md` and `docs/seo_content_workflow.md` — the repeatable brief-to-publish process
+- `docs/seo_90_day_content_plan.md` — the actual 90-day publishing target, replacing the illustrative plan in §5 above
+
+The 3 articles published at Phase 9/10 remain accurate against §4's Custom Software, AI & Automation, and Professional Services/Custom Software clusters. No blog content was mass-published in Phase 11 — this phase built the governance system only.

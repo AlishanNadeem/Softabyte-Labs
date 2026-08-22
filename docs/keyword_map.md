@@ -511,3 +511,9 @@ Legal. No commercial keyword targeting. Indexable. Self-canonical.
 | Process vs Custom Software process blog | Process = our delivery; blog = educational |
 
 If two drafts share an H1 intent, combine them before design/build.
+
+---
+
+## Implementation note — Phase 11 (August 22, 2026)
+
+This map remains the Phase 0 strategic record. The verified, code-checked implementation-level ownership map is `docs/seo_keyword_ownership.md`; consult it first for "what is live today" questions. No primary keyword, H1, or metadata assignment on this page changed in Phase 11.

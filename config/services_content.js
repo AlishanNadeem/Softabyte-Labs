@@ -48,15 +48,15 @@ export const services_hub = {
     description:
       "We start by understanding goals, constraints, users, and existing systems before committing to a delivery plan.",
     paragraphs: [
-      "Engagements typically move through discovery, planning, design where needed, development, launch, and ongoing improvement. The process page will cover full detail when published.",
-      "For now, the most useful next step is a direct conversation about what you are building, replacing, or improving.",
+      "Engagements typically move through discovery, planning, design where needed, development, launch, and ongoing improvement. See the Process page for full detail on how we run each phase.",
+      "The most useful next step is a direct conversation about what you are building, replacing, or improving.",
     ],
   },
   industries_section: {
     eyebrow: "Industry context",
     headline: "Services apply across operating environments",
     description:
-      "Industry pages will cover vertical-specific requirements when published. Service pages stay focused on what we deliver.",
+      "Industry pages cover vertical-specific requirements in more depth. Service pages stay focused on what we deliver.",
     paragraphs: [
       "Healthcare, real estate, logistics, ecommerce, professional services, and SaaS teams often need different combinations of the same core capabilities — custom systems, customer-facing products, automation, and reliable infrastructure.",
       "We can discuss industry context during discovery without turning a service page into a vertical keyword page.",

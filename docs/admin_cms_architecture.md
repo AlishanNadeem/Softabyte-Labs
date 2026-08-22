@@ -18,7 +18,7 @@
 | `/admin/contact-submissions/` | Contact list |
 | `/admin/contact-submissions/[id]/` | Contact detail |
 
-All Admin routes: `noindex, nofollow`, excluded from sitemap, disallowed in robots, `X-Robots-Tag` via middleware, no public nav links.
+All Admin routes: `noindex, nofollow`, excluded from sitemap, disallowed in robots, `X-Robots-Tag` via proxy, no public nav links.
 
 ---
 
@@ -55,6 +55,31 @@ No public registration. No password-reset email flow.
 - `published_at` preserved on edit; `updated_at` refreshes
 - Featured: at most one published featured post
 - Migration: `npm run migrate-blog` (idempotent upsert by slug)
+
+### SEO planning fields (Phase 11 — admin-only)
+
+Five optional editorial fields support content governance without affecting public output:
+
+| Field | Purpose |
+|---|---|
+| `primary_keyword` | Free-text planning theme, checked for exact-match conflicts against other posts |
+| `search_intent` | One of `informational`, `commercial_investigation`, `transactional` (`lib/seo/content_planning.js`) |
+| `content_cluster` | One of the 12 clusters in `docs/seo_content_clusters.md` |
+| `target_service` | Optional link to a service nav href, for planning/reporting only |
+| `target_industry` | Optional link to an industry nav href, for planning/reporting only |
+
+**Serialization boundary (strict):**
+
+- `lib/blog/db.js` → `serialize_blog_post()` is the single public/shared allowlist serializer. It never includes these 5 fields and never spreads the raw MongoDB document.
+- `lib/blog/db.js` → `serialize_blog_admin_planning_fields()` returns only the 5 planning fields, with `null` defaults for existing posts that predate this feature.
+- `lib/blog/admin_repository.js` → `admin_get_blog_post_by_id()` (used by the Admin edit page only) merges the two: `{ ...serialize_blog_post(doc), ...serialize_blog_admin_planning_fields(doc) }`. The admin list/dashboard reads still use `serialize_blog_post()` alone.
+- The public repository (`lib/blog/repository.js`), sitemap, metadata helpers, and `BlogPosting` structured data never import or reference these fields.
+
+**Non-blocking overlap warnings (editorial aid, never enforced):**
+
+- `check_primary_keyword_conflict_action()` (`lib/admin/actions.js`, requires `require_admin()`) → `admin_find_primary_keyword_conflicts()` looks up other posts sharing the exact normalized `primary_keyword` and returns their title/slug/status.
+- `find_commercial_owner_overlap()` (`lib/seo/content_planning.js`) runs client-side in `BlogPostForm` against a small curated list of live money-page themes and shows a reminder note if the typed keyword is close to an existing commercial primary.
+- Neither check blocks draft save or publish, adds an SEO score, or writes `meta_keywords`.
 
 ### Public rendering
 

@@ -11,12 +11,14 @@ import { IndustryHero } from "@/components/sections/industries/IndustryHero";
 import { IndustryWorkflow } from "@/components/sections/industries/IndustryWorkflow";
 import { RelatedIndustries } from "@/components/sections/industries/RelatedIndustries";
 import { RelatedServices } from "@/components/sections/services/RelatedServices";
+import { RelatedInsights } from "@/components/sections/shared/RelatedInsights";
 import { ServiceSection } from "@/components/sections/services/ServiceSection";
 import {
   VisualSplit,
   WideVisual,
 } from "@/components/sections/services/VisualSections";
 import { industry_visuals } from "@/config/industries_visuals";
+import { get_related_insights } from "@/config/related_insights_links";
 import {
   blur_preset_primary,
   industry_hero_blurs,
@@ -136,6 +138,11 @@ export function IndustryPage({ content }) {
           theme_cycle[index % theme_cycle.length],
           visuals
         )
+      )}
+      {get_related_insights(content.path).length > 0 && (
+        <ServiceSection theme="secondary">
+          <RelatedInsights path={content.path} />
+        </ServiceSection>
       )}
       <GlobalCTA
         eyebrow={content.cta.eyebrow}
